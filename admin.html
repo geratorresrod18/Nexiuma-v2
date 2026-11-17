@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración | Nexiuma</title>
+    <link rel="stylesheet" href="frontend/assets/css/styles.css">
+    <style>
+        body { padding: 40px 20px; }
+        .admin { max-width: 950px; margin: 50px auto; }
+        .admin-box {
+            background: white; padding: 30px;
+            border-radius: 16px; margin-top: 25px;
+        }
+        input { padding: 14px; width: 100%; margin: 12px 0; }
+        .consulta {
+            padding: 20px 0; border-bottom: 1px solid #eee;
+        }
+        .consulta p { margin: 8px 0; }
+        #panel { display: none; }
+    </style>
+</head>
+<body>
+
+<main class="admin">
+    <h1>Panel administrador</h1>
+    <p>Gestión de consultas de Nexiuma</p>
+
+    <section class="admin-box" id="login">
+        <h2>Iniciar sesión</h2>
+        <input type="password" id="password" placeholder="Contraseña de administrador">
+        <button class="btn-primary" onclick="iniciarSesion()">Ingresar</button>
+        <p id="error"></p>
+    </section>
+
+    <section class="admin-box" id="panel">
+        <h2>Consultas recibidas</h2>
+        <button class="btn-primary" onclick="cargarConsultas()">Actualizar</button>
+        <div id="consultas"></div>
+    </section>
+</main>
+
+<script>
+const API = "http://localhost:3001";
+
+async function iniciarSesion() {
+    const password = document.getElementById("password").value;
+
+    try {
+        const respuesta = await fetch(`${API}/api/admin/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password })
+        });
+
+        const datos = await respuesta.json();
+
+        if (!respuesta.ok) {
+            document.getElementById("error").textContent = datos.mensaje;
+            return;
+        }
+
+        sessionStorage.setItem("adminToken", datos.token);
+
+        document.getElementById("login").style.display = "none";
+        document.getElementById("panel").style.display = "block";
+
+        cargarConsultas();
+
+    } catch (error) {
+        document.getElementById("error").textContent =
+            "No se pudo conectar con el servidor.";
+    }
+}
+
+async function cargarConsultas() {
+    const token = sessionStorage.getItem("adminToken");
+
+    const respuesta = await fetch(`${API}/api/admin/consultas`, {
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if (!respuesta.ok) {
+        document.getElementById("consultas").textContent =
+            "No se pudieron cargar las consultas.";
+        return;
+    }
+
+    const consultas = await respuesta.json();
+    const contenedor = document.getElementById("consultas");
+
+    if (consultas.length === 0) {
+        contenedor.textContent = "Todavía no hay consultas.";
+        return;
+    }
+
+    contenedor.innerHTML = "";
+
+    consultas.forEach(c => {
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "consulta";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = c.nombre;
+
+        const datos = document.createElement("div");
+
+        [
+            `Email: ${c.email}`,
+            `WhatsApp: ${c.whatsapp}`,
+            `Profesión: ${c.profesion || "No indicada"}`,
+            `Mensaje: ${c.mensaje}`,
+            `Fecha: ${new Date(c.fecha).toLocaleString("es-UY")}`
+        ].forEach(texto => {
+            const p = document.createElement("p");
+            p.textContent = texto;
+            datos.appendChild(p);
+        });
+
+        tarjeta.append(titulo, datos);
+        contenedor.appendChild(tarjeta);
+    });
+}
+</script>
+
+</body>
+</html>
