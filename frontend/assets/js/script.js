@@ -73,31 +73,55 @@ if (botonSiguiente && botonAnterior) {
 
 
 
+
 // FORMULARIO DE CONTACTO
 
 const formulario = document.querySelector("#formContacto");
 
 if (formulario) {
 
-    formulario.addEventListener("submit", function(event) {
+    formulario.addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-        const nombre = document.querySelector("#nombre").value;
-        const email = document.querySelector("#email").value;
-        const whatsapp = document.querySelector("#whatsapp").value;
-        const profesion = document.querySelector("#profesion").value;
-        const mensaje = document.querySelector("#mensaje").value;
+        const datos = {
+            nombre: document.querySelector("#nombre").value,
+            email: document.querySelector("#email").value,
+            whatsapp: document.querySelector("#whatsapp").value,
+            profesion: document.querySelector("#profesion").value,
+            mensaje: document.querySelector("#mensaje").value
+        };
 
-        console.log(nombre, email, whatsapp, profesion, mensaje);
+        try {
 
-        formulario.innerHTML = `
-            <div class="mensaje-exito">
-                <h2>¡Recibimos tus datos!</h2>
-                <p>Gracias por contactarte con Nexiuma.</p>
-                <p>En breve nos comunicaremos contigo.</p>
-            </div>
-        `;
+            const respuesta = await fetch("http://localhost:3000/api/contacto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error("No se pudo enviar la consulta");
+            }
+
+            formulario.innerHTML = `
+                <div class="mensaje-exito">
+                    <h2>¡Recibimos tus datos!</h2>
+                    <p>${resultado.mensaje}</p>
+                </div>
+            `;
+
+        } catch (error) {
+
+            console.error("Error al enviar:", error);
+
+            alert("No pudimos enviar tu consulta. Intentá nuevamente.");
+
+        }
 
     });
 
