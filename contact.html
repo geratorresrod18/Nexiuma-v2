@@ -1,127 +1,141 @@
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Contacto | Nexiuma</title>
 
-
+    
     <link rel="stylesheet" href="frontend/assets/css/styles.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">  
-      
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 
-
-
+<body>
 
     <header>
 
-    <div class="container">
-    
+        <div class="container">
 
-        <div class="logo">
-              <img src="frontend/assets/img/Logo-Nexiuma.png" alt="Logo de Nexiuma">
+            <div class="logo">
+               
+                <img src="frontend/assets/img/Logo-Nexiuma.png" alt="Logo de Nexiuma">
+            </div>
+
+            <div class="menu">
+                <nav>
+                    <a href="index.html">Inicio</a>
+                    <a href="index.html#que-es">Qué es</a>
+                    <a href="index.html#para-quien-es">Para quién es</a>
+                    <a href="index.html#funciones">Funciones</a>
+                    <a href="index.html#planes">Planes</a>
+                </nav>
+            </div>
+
+            <div class="acciones">
+                <a href="#" class="btn-secondary">Iniciar Sesión</a>
+                <a href="#" class="btn-primary">Crear Cuenta</a>
+            </div>
+
         </div>
-
-        <div class="menu">
-            <nav> 
-                <a href="#">Inicio</a>
-                <a href="#que-es">Qué es</a>
-                <a href="#">Para quién es</a>
-                <a href="#funciones">Funciones</a>
-                <a href="#planes">Planes</a>
-            </nav>
-        </div>
-
-        <div class="acciones">
-            <a href="#" class="btn-secondary">Iniciar Sesión</a>
-            <a href="#" class="btn-primary">Crear Cuenta</a>
-        </div>
-
-     </div> 
 
     </header>
 
+    <main>
 
-<main>
+        <section class="pagina-contacto">
 
-    <section class="pagina-contacto">
+            <div class="contacto-intro">
 
-        <div class="contacto-intro">
+                <span>CONTACTO</span>
 
-            <span>CONTACTO</span>
+                <h1>Hablemos de Nexiuma.</h1>
 
-            <h1>Hablemos de Nexiuma.</h1>
+                <p>
+                    ¿Tenés alguna consulta? Estamos para ayudarte.
+                    Escribinos y conocé cómo Nexiuma puede ayudarte
+                    a organizar mejor tu tiempo.
+                </p>
 
-            <p>
-                ¿Tenés alguna consulta? Estamos para ayudarte.
-                Escribinos y conocé cómo Nexiuma puede ayudarte
-                a organizar mejor tu tiempo.
-            </p>
+            </div>
 
-        </div>
+            <div class="contacto-contenido">
 
+                <form id="formContacto">
 
-<div class="contacto-contenido">
+                    <div class="campo">
+                        <label for="nombre">Nombre completo</label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            placeholder="Escribí tu nombre"
+                            required
+                        >
+                    </div>
 
-    <form id="formContacto">
+                    <div class="campo">
+                        <label for="email">Correo electrónico</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="ejemplo@correo.com"
+                            required
+                        >
+                    </div>
 
-        <div class="campo">
-            <label for="nombre">Nombre completo</label>
-            <input type="text" id="nombre" name="nombre"
-                   placeholder="Escribí tu nombre" required>
-        </div>
+                    <div class="campo">
+                        <label for="whatsapp">WhatsApp</label>
+                        <input
+                            type="tel"
+                            id="whatsapp"
+                            name="whatsapp"
+                            placeholder="Tu número de contacto"
+                            required
+                        >
+                    </div>
 
-        <div class="campo">
-            <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email"
-                   placeholder="ejemplo@correo.com" required>
-        </div>
+                    <div class="campo">
+                        <label for="profesion">¿A qué te dedicás?</label>
+                        <input
+                            type="text"
+                            id="profesion"
+                            name="profesion"
+                            placeholder="Ej: Manicurista, médico, entrenador..."
+                        >
+                    </div>
 
-    
+                    <div class="campo">
+                        <label for="mensaje">¿En qué podemos ayudarte?</label>
+                        <textarea
+                            id="mensaje"
+                            name="mensaje"
+                            placeholder="Escribí tu consulta..."
+                            required
+                        ></textarea>
+                    </div>
 
+                    <button type="submit" class="btn-primary">
+                        Enviar consulta
+                    </button>
 
+                </form>
 
-<div class="campo">
-    <label for="whatsapp">WhatsApp</label>
-    <input type="tel" id="whatsapp" name="whatsapp"
-           placeholder="Tu número de contacto" required>
-</div>
+            </div>
 
-<div class="campo">
-    <label for="profesion">¿A qué te dedicás?</label>
-    <input type="text" id="profesion" name="profesion"
-           placeholder="Ej: Manicurista, médico, entrenador...">
-</div>
+        </section>
 
-<div class="campo">
-    <label for="mensaje">¿En qué podemos ayudarte?</label>
-    <textarea id="mensaje" name="mensaje"
-              placeholder="Escribí tu consulta..." required></textarea>
-</div>
+    </main>
 
-<button type="submit" class="btn-primary">Enviar consulta</button>
-
-
-</form>
-
-
-
-
-
-
-
-    </section>
-
-</main>
-
-  
-<body>
-
+   
     <script src="frontend/assets/js/script.js"></script>
-    
+
 </body>
 </html>

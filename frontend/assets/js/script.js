@@ -94,7 +94,7 @@ if (formulario) {
 
         try {
 
-            const respuesta = await fetch("http://localhost:3000/api/contacto", {
+            const respuesta = await fetch("http://localhost:3001/api/contacto", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -103,6 +103,7 @@ if (formulario) {
             });
 
             const resultado = await respuesta.json();
+            console.log("Respuesta del servidor:", resultado);
 
             if (!respuesta.ok) {
                 throw new Error("No se pudo enviar la consulta");
