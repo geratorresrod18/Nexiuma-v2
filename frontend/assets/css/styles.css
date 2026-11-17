@@ -1,3 +1,8 @@
+/* ==================================================
+   01. CONFIGURACIÓN GENERAL
+================================================== */
+
+
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +14,12 @@ body{
     color: #2F2F2F;
     font-family: "Manrope", sans-serif ;
 }
+
+
+/* ==================================================
+   02. HEADER Y NAVEGACIÓN
+================================================== */
+
 
 header{
     position: fixed;
@@ -35,6 +46,7 @@ header{
      background: rgba(255,255,255,0.2);
      box-shadow: 0 10px 30px rgba(0,0,0,.05);
 }
+
     
     main{
         margin-top: 130px;
@@ -57,6 +69,7 @@ header{
     display: flex;
     gap: 25px;
 }
+
 .menu a { 
     color: #2F2F2F;
     text-decoration: none;
@@ -75,6 +88,7 @@ header{
     display: flex;
     gap: 10px;
 }
+
  
 .btn-primary{
     background-color: #d6c4b0;
@@ -86,6 +100,7 @@ header{
     border-radius: 10px;
     text-decoration: none;
 }
+
     
 
 .btn-primary:hover{
@@ -93,6 +108,7 @@ header{
     border: 2px solid #d6c4b0;
     transform: scale(1.03);
 }
+
    
 
 
@@ -115,6 +131,11 @@ header{
     transform: scale(1.03);
 }
 
+
+
+/* ==================================================
+   03. PORTADA (HERO)
+================================================== */
 
 
 .hero-imagen img {
@@ -164,6 +185,13 @@ header{
     margin-bottom: 35px;
 }
 
+
+
+/* ==================================================
+   04. QUÉ ES NEXIUMA
+================================================== */
+
+
 .badge-section{
     display: inline-block;
     background-color: #f4f0ea;
@@ -174,7 +202,6 @@ header{
     font-weight: 600;
     margin-bottom: 12px;
 }
-
 
 #que-es{
     background-color: #e1e0de;
@@ -206,51 +233,12 @@ header{
     margin-bottom: 70px;
 }
 
-.cards{
-   display: flex;
-   gap: 16px;
-   
-}
 
-.card{
-    background: white;
-    border: 1px solid #ebe6df;
-    border-radius: 18px;
-    padding: 18px 16px;
-    flex: 1;
-    text-align: center;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 240px;
-    height: 240px;
-   
-}
 
-.card:hover{
-    transform: translateY(-8px);
-    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
-    border-color: #d6c4b0;
-}
+/* ==================================================
+   05. NUESTRA HISTORIA
+================================================== */
 
-.card img{
-    width: 38px;
-    margin-bottom: 12px;
-}
-
-.card h3{
-    font-size: 20px;
-    color: #2f2f2f;
-    margin-bottom: 10px;
-    margin-top: 8px;
-}
-
-.card p{
-    font-size: 15px;
-    color: #666;
-    line-height: 1.4;
-}
 
 #nosotros{
     background-color: #f8f6f2;
@@ -292,7 +280,6 @@ header{
     font-weight: 700;
 }
 
-
 .linea{
     width: 80px;
     height: 4px;
@@ -316,7 +303,9 @@ header{
 
 
 
-
+/* ==================================================
+   06. PARA QUIÉN ES
+================================================== */
 
 
 #para-quien-es{
@@ -397,8 +386,6 @@ header{
     color: #2F2F2F;
 }
 
-
-
 .card-profesional p{
    margin-left: 99px;
    font-size: 17px;
@@ -414,4 +401,593 @@ header{
     margin-top: 0px;
     margin-bottom: 14px;
     margin-left: 99px;
+}
+
+
+
+/* ==================================================
+   07. FUNCIONES Y CARRUSEL
+================================================== */
+
+
+#funciones{
+    background-color: #f7f4ef;
+    padding: 70px 0;
+}
+
+#funciones .container{
+    display: block;
+}
+
+.funciones-texto{
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.funciones-texto h2{
+    font-size: 2.6rem;
+    line-height: 1.2;
+    margin: 18px auto;
+    max-width: 1200px;
+    color: #2f2f2f;
+}
+
+.funciones-texto p{
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #666;
+}
+
+/*====================================
+        CARRUSEL NEXIUMA
+=====================================*/
+
+.carrusel{
+    position: relative;
+    width: 100%;
+    height: 760px;
+    margin-top: 70px;
+    overflow: visible;
+}
+
+.carrusel-track{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card-funciones{
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 360px;
+
+    transition:
+        transform .8s ease,
+        opacity .8s ease,
+        filter .8s ease;
+
+    cursor: pointer;
+}
+
+.card-funciones img{
+    width:100%;
+    display:block;
+    border-radius:26px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.12);
+}
+
+/*============================
+      POSICIONES
+=============================*/
+
+.left2{
+
+    transform:
+    translate(-430px,-50%)
+    scale(.55);
+
+    opacity:.18;
+
+    filter:blur(2px);
+
+    z-index:1;
+}
+
+.left1{
+
+    transform:
+    translate(-250px,-50%)
+    scale(.82);
+
+    opacity:.60;
+
+    z-index:5;
+}
+
+.active{
+
+    transform:
+    translate(-50%,-50%)
+    scale(1.40);
+
+    opacity:1;
+
+    z-index:20;
+}
+
+.right1{
+
+    transform:
+    translate(70px,-50%)
+    scale(.82);
+
+    opacity:.60;
+
+    z-index:5;
+}
+
+.right2{
+
+    transform:
+    translate(250px,-50%)
+    scale(.55);
+
+    opacity:.18;
+
+    filter:blur(2px);
+
+    z-index:1;
+}
+
+/*============================
+        BOTONES
+=============================*/
+
+.btn-carrusel{
+
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+
+    cursor:pointer;
+
+    font-size:26px;
+
+    z-index:50;
+
+    transition:.3s;
+}
+
+.btn-carrusel:hover{
+
+    transform:translateY(-50%) scale(1.1);
+
+}
+
+.prev{
+
+    left:0;
+}
+
+.next{
+
+    right:0;
+}
+
+.card-funciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-funciones img{
+    width: 100%;
+    max-width: 340px;
+    display: block;
+    border-radius: 24px;
+
+    transition: transform .55s ease;
+}
+
+
+
+/* ==================================================
+   08. PLANES Y TARJETAS
+================================================== */
+#planes {
+    background-color: #e4e0d7;
+    padding: 70px 0;
+}
+
+.cards{
+   display: flex;
+   gap: 16px;
+   
+}
+
+.card{
+    background: white;
+    border: 1px solid #ebe6df;
+    border-radius: 18px;
+    padding: 24px 20px;
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 430px;
+    height: auto;
+    box-sizing: border-box;
+   
+}
+
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+    border-color: #d6c4b0;
+}
+
+.card img{
+    width: 38px;
+    margin-bottom: 12px;
+}
+
+.card p{
+    font-size: 15px;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+.card h3{
+    font-size: 27px;
+    color: #2f2f2f;
+    margin-bottom: 10px;
+    margin-top: 8px;
+}
+
+.card h2{
+    font-size: 34px;
+    color: #2f2f2f;
+    margin: 0px 0 12px;
+}
+
+.card h2 small {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    width: 100%;
+}
+
+.card li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.btn-plan {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 12px 24px;
+    background-color: #d6c4b0;
+    color: #2f2f2f;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-plan:hover {
+    background-color: #f7f4f1;
+    border: 1px solid #d6c4b0;
+    transform: translateY(-3px);
+}
+
+
+
+
+.contacto-cta {
+    background-color: #f4efea;
+    text-align: center;
+    padding: 75px 20px;
+}
+
+.contacto-cta span {
+    color: #a78b6d;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.contacto-cta h2 {
+    color: #2f2f2f;
+    font-size: 32px;
+    margin: 15px 0;
+}
+
+.contacto-cta p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 28px;
+}
+
+
+
+
+  
+
+.footer {
+    background-color: #eae8e2;
+    padding: 65px 8% 25px;
+    margin-top: 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 45px;
+}
+
+.footer-marca h2 {
+    font-size: 30px;
+    color: #2f2f2f;
+    margin-bottom: 12px;
+}
+
+.footer-marca p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.footer-marca span {
+    font-size: 13px;
+    color: #777;
+}
+
+.footer-columna {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.footer-columna h3 {
+    font-size: 17px;
+    color: #2f2f2f;
+    margin-bottom: 8px;
+}
+
+.footer-columna a {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-columna a:hover {
+    color: #a78b6d;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 22px;
+    border-top: 1px solid #d6c4b0;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #777;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+    .footer-marca {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .footer {
+        padding: 45px 7% 20px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .footer-marca h2 {
+        font-size: 26px;
+    }
+
+    .footer-columna h3 {
+        font-size: 15px;
+    }
+
+    .footer-columna a {
+        font-size: 13px;
+    }
+
+}
+
+
+
+/* PÁGINA DE CONTACTO */
+
+.pagina-contacto {
+    padding: 100px 20px 80px;
+}
+
+.contacto-intro {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contacto-intro span {
+    color: #9b8b7b;
+    font-size: 14px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.contacto-intro h1 {
+    font-size: 42px;
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+.contacto-intro p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #666;
+}
+
+
+
+
+.contacto-contenido {
+    max-width: 650px;
+    margin: 50px auto 0;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+#formContacto {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.campo label {
+    font-weight: 600;
+}
+
+.campo input {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #d6c4b0;
+}
+
+
+
+
+
+.campo textarea {
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    min-height: 140px;
+    resize: vertical;
+}
+
+.campo textarea:focus {
+    outline: none;
+    border-color: #d6c4b0;
+}
+
+#formContacto button {
+    padding: 15px 28px;
+    background-color: #d6c4b0;
+    color: #2F2F2F;
+    border: 2px solid #d6c4b0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+}
+
+
+#formContacto button:hover {
+    background-color: #f7f4f1;
+    transform: scale(1.03);
+}
+
+
+
+.mensaje-exito {
+    text-align: center;
+    padding: 35px 15px;
+}
+
+.mensaje-exito h2 {
+    font-size: 26px;
+    color: #2F2F2F;
+    margin-bottom: 15px;
+}
+
+.mensaje-exito p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.7;
 }
