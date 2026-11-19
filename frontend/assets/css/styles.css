@@ -1640,3 +1640,35 @@ header{
         padding-right: 17px;
     }
 }
+
+
+
+/* Mostrar botones de acceso en celulares */
+@media screen and (max-width: 768px) {
+
+    header .acciones {
+        display: flex !important;
+        width: 100%;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 2px;
+    }
+
+    header .acciones a,
+    header .acciones button {
+        flex: 1;
+        min-width: 0;
+        min-height: 44px;
+        padding: 11px 8px;
+        font-size: 13px;
+        text-align: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    main {
+        margin-top: 205px;
+    }
+}
+
