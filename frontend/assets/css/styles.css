@@ -1293,28 +1293,350 @@ header{
     }
 }
 
-/* AJUSTES PARA CELULARES PEQUEÑOS */
-@media (max-width: 480px) {
 
-    .cards {
-        grid-template-columns: 1fr;
+/* ==========================================
+   NEXIUMA - RESPONSIVE MOBILE
+   Correcciones para celulares
+========================================== */
+
+@media screen and (max-width: 768px) {
+
+    html, body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 0 auto;
+    }
+
+    /* ENCABEZADO */
+
+    header {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 17px 0;
+        border-radius: 20px;
+    }
+
+    header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .logo img {
+        height: 36px;
+        width: auto;
+        max-width: 190px;
+    }
+
+    .menu {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .menu nav {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 23px;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+
+    .menu nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu a,
+    .menu a:hover {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .acciones {
+        display: none;
+    }
+
+    main {
+        margin-top: 145px;
+    }
+
+    /* PORTADA */
+
+    .hero {
+        padding: 45px 0 55px;
+    }
+
+    .hero .container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 28px;
+    }
+
+    .hero-texto {
+        width: 100%;
+        min-width: 0;
+        text-align: left;
+    }
+
+    .badge {
+        display: inline-block;
+        max-width: 100%;
+        font-size: 14px;
+        line-height: 1.5;
+        padding: 12px 20px;
+        margin-bottom: 25px;
     }
 
     .hero-texto h1 {
-        font-size: 38px;
+        font-size: clamp(38px, 10vw, 48px);
+        line-height: 1.12;
+        margin-bottom: 20px;
+        overflow-wrap: normal;
+    }
+
+    .hero-texto p {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 25px;
     }
 
     .hero-botones {
+        display: flex;
         flex-direction: column;
         align-items: stretch;
-    }
-
-    .hero-botones a {
+        gap: 12px;
         width: 100%;
     }
 
+    .hero-botones a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 50px;
+        margin: 0;
+        padding: 13px 18px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .hero-imagen {
+        display: block;
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+        min-width: 0;
+    }
+
+    .hero-imagen img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* SECCIONES GENERALES */
+
+    #que-es,
+    #nosotros,
+    #para-quien-es,
+    #funciones,
+    #planes {
+        padding: 55px 0;
+    }
+
+    .badge-section {
+        font-size: 16px;
+    }
+
+    .que-es-texto h2,
+    .nosotros-texto h2,
+    .para-quien-es-texto h2,
+    .funciones-texto h2 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    .que-es-texto p,
+    .nosotros-texto p,
+    .para-quien-es-texto p,
+    .funciones-texto p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .nosotros-texto p.destacado {
+        font-size: 17px;
+    }
+
+    /* BOTONES DE HISTORIA */
+
+    .nosotros-botones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-nosotros {
+        width: 100%;
+        font-size: 16px;
+        padding: 15px 18px;
+        text-align: center;
+    }
+
+    /* TARJETAS DE PROFESIONES */
+
+    .cards-profesionales {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card-profesional {
+        height: auto;
+        min-height: 180px;
+        padding: 22px;
+    }
+
+    .card-header img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .card-profesional p,
+    .linea-card {
+        margin-left: 81px;
+    }
+
+    .card-profesional p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* TARJETAS DE PLANES Y BENEFICIOS */
+
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .card {
+        width: 100%;
+        min-height: auto;
+        padding: 28px 22px;
+    }
+
+    .card h3 {
+        font-size: 24px;
+    }
+
+    .card h2 {
+        font-size: 32px;
+    }
+
+    .btn-plan {
+        font-size: 16px;
+    }
+
+    /* CARRUSEL DE FUNCIONES */
+
+    .carrusel {
+        height: 520px;
+        margin-top: 35px;
+        overflow: hidden;
+    }
+
+    .card-funciones {
+        width: 72vw;
+        max-width: 290px;
+    }
+
+    .left2,
+    .left1,
+    .right1,
+    .right2 {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .btn-carrusel {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    /* CONTACTO */
+
+    .pagina-contacto {
+        padding: 65px 18px;
+    }
+
+    .contacto-intro h1 {
+        font-size: 32px;
+    }
+
+    .contacto-contenido {
+        padding: 25px 18px;
+    }
+
+    /* PIE DE PÁGINA */
+
     .footer-container {
         grid-template-columns: 1fr 1fr;
+        gap: 28px 18px;
+    }
+
+    .footer-marca {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
+/* CELULARES PEQUEÑOS */
+
+@media screen and (max-width: 380px) {
+
+    header .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .menu nav {
+        gap: 17px;
+    }
+
+    .hero-texto h1 {
+        font-size: 36px;
+    }
+
+    .hero .container {
+        padding-left: 17px;
+        padding-right: 17px;
+    }
+}
