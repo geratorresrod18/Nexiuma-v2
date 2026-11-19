@@ -7,6 +7,7 @@ if (header) {
     });
 }
 
+
 // CARRUSEL DE FUNCIONES
 const cards = document.querySelectorAll(".card-funciones");
 const botonSiguiente = document.querySelector(".next");
@@ -17,34 +18,30 @@ const posiciones = ["left2", "left1", "active", "right1", "right2"];
 function actualizarCarrusel() {
     cards.forEach((card, index) => {
         card.classList.remove("left2", "left1", "active", "right1", "right2");
-
-        if (posiciones[index]) {
-            card.classList.add(posiciones[index]);
-        }
+        card.classList.add(posiciones[index]);
     });
 }
 
 function siguiente() {
-    posiciones.push(posiciones.shift());
-    actualizarCarrusel();
-}
-
-function anterior() {
     posiciones.unshift(posiciones.pop());
     actualizarCarrusel();
 }
 
-if (cards.length === posiciones.length) {
+function anterior() {
+    posiciones.push(posiciones.shift());
+    actualizarCarrusel();
+}
+
+if (cards.length === 5) {
     actualizarCarrusel();
 
     botonSiguiente?.addEventListener("click", siguiente);
     botonAnterior?.addEventListener("click", anterior);
 
-    let intervaloCarrusel = setInterval(siguiente, 3500);
+    let intervaloCarrusel = setInterval(siguiente, 2500);
 
     const carrusel = document.querySelector(".carrusel");
 
-    // Pausa automática cuando el usuario interactúa con el carrusel.
     if (carrusel) {
         carrusel.addEventListener("mouseenter", () => {
             clearInterval(intervaloCarrusel);
@@ -52,10 +49,11 @@ if (cards.length === posiciones.length) {
 
         carrusel.addEventListener("mouseleave", () => {
             clearInterval(intervaloCarrusel);
-            intervaloCarrusel = setInterval(siguiente, 3500);
+            intervaloCarrusel = setInterval(siguiente, 2500);
         });
     }
 }
+
 
 // FORMULARIO DE CONTACTO
 const formulario = document.querySelector("#formContacto");
