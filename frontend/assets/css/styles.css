@@ -991,3 +991,330 @@ header{
     font-size: 16px;
     line-height: 1.7;
 }
+
+
+/* =========================================
+   NEXIUMA - DISEÑO RESPONSIVE PARA CELULARES
+========================================= */
+
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: calc(100% - 36px);
+        max-width: 100%;
+    }
+
+    /* HEADER */
+    header {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        padding: 14px 0;
+        border-radius: 16px;
+    }
+
+    header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .logo img {
+        height: 34px;
+        width: auto;
+    }
+
+    .menu {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .menu nav {
+        display: flex;
+        gap: 22px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 4px 0 8px;
+        scrollbar-width: none;
+    }
+
+    .menu nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .menu a {
+        font-size: 14px;
+        flex-shrink: 0;
+    }
+
+    .menu a:hover {
+        font-size: 14px;
+    }
+
+    .acciones {
+        display: none;
+    }
+
+    main {
+        margin-top: 145px;
+    }
+
+    /* PORTADA */
+    .hero {
+        padding: 45px 0;
+    }
+
+    .hero .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .hero-texto {
+        width: 100%;
+        flex: none;
+    }
+
+    .badge {
+        font-size: 13px;
+        padding: 11px 17px;
+        margin-bottom: 22px;
+    }
+
+    .hero-texto h1 {
+        font-size: clamp(36px, 10vw, 48px);
+        line-height: 1.12;
+        margin-bottom: 18px;
+    }
+
+    .hero-texto p {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .hero-botones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-botones a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        padding: 13px 17px;
+        margin: 0;
+    }
+
+    .hero-imagen {
+        width: 100%;
+        max-width: 390px;
+        margin: 0 auto;
+        flex: none;
+    }
+
+    .hero-imagen img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* SECCIONES */
+    #que-es,
+    #nosotros,
+    #para-quien-es,
+    #funciones,
+    #planes {
+        padding: 55px 0;
+    }
+
+    .badge-section {
+        font-size: 15px;
+    }
+
+    .que-es-texto h2,
+    .nosotros-texto h2,
+    .para-quien-es-texto h2,
+    .funciones-texto h2 {
+        font-size: 29px;
+        line-height: 1.2;
+        margin-bottom: 25px;
+    }
+
+    .que-es-texto p,
+    .nosotros-texto p,
+    .para-quien-es-texto p,
+    .funciones-texto p {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    /* TARJETAS */
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .card {
+        min-width: 0;
+        min-height: 0;
+        padding: 22px 14px;
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    .card h2 {
+        font-size: 27px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .card li {
+        font-size: 13px;
+    }
+
+    .btn-plan {
+        font-size: 14px;
+        padding: 11px 14px;
+    }
+
+    /* PROFESIONES */
+    .cards-profesionales {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card-profesional {
+        height: auto;
+        min-height: 175px;
+        padding: 20px;
+    }
+
+    .card-header img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .card-header h3 {
+        font-size: 18px;
+    }
+
+    .card-profesional p {
+        margin-left: 81px;
+        font-size: 14px;
+    }
+
+    .linea-card {
+        margin-left: 81px;
+    }
+
+    /* CARRUSEL */
+    .carrusel {
+        height: 430px;
+        margin-top: 35px;
+        overflow: hidden;
+    }
+
+    .card-funciones {
+        width: 75vw;
+        max-width: 290px;
+    }
+
+    .card-funciones:not(.active) {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .card-funciones.active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    .btn-carrusel {
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+    }
+
+    /* BOTONES DE HISTORIA */
+    .nosotros-botones {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-nosotros {
+        font-size: 15px;
+        padding: 14px 18px;
+        text-align: center;
+    }
+
+    /* CONTACTO */
+    .pagina-contacto {
+        padding: 65px 18px;
+    }
+
+    .contacto-intro h1 {
+        font-size: 30px;
+    }
+
+    .contacto-contenido {
+        padding: 25px 18px;
+    }
+
+    /* ASISTENTE NEXI */
+    #nexi-boton {
+        right: 15px;
+        bottom: 15px;
+        font-size: 14px;
+        padding: 13px 17px;
+    }
+
+    #nexi-ventana {
+        right: 12px;
+        bottom: 75px;
+        width: calc(100vw - 24px);
+        max-width: 400px;
+    }
+}
+
+/* AJUSTES PARA CELULARES PEQUEÑOS */
+@media (max-width: 480px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-texto h1 {
+        font-size: 38px;
+    }
+
+    .hero-botones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-botones a {
+        width: 100%;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
