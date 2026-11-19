@@ -89,7 +89,7 @@ if (formulario) {
         }
 
         try {
-            const respuesta = await fetch("http://localhost:3001/api/contacto", {
+            const respuesta = await fetch("https://nexiuma-backend.onrender.com/api/contacto", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -538,7 +538,7 @@ try {
         sessionStorage.getItem("nexiHistorial") || "[]"
     );
 
-    const respuesta = await fetch("http://localhost:3001/api/ia/chat", {
+    const respuesta = await fetch("https://nexiuma-backend.onrender.com/api/ia/chat", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -579,7 +579,6 @@ try {
 nexiFormulario.querySelector("button").disabled = false;
 nexiEntrada.focus();
 
-    });
 
 
 </script>

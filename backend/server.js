@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -958,7 +958,7 @@ async function iniciarServidor() {
         console.log("Colecciones listas: consultas, reservas, servicios, negocios y usuarios.");
 
         app.listen(PORT, () => {
-            console.log(`Servidor funcionando en http://localhost:${PORT}`);
+            console.log(`Servidor funcionando en el puerto ${PORT}`);
         });
 
     } catch (e) {
