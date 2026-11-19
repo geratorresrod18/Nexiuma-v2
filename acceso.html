@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso | Nexiuma</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --fondo: #eae8e2;
+    --texto: #303030;
+    --beige: #d6c4b0;
+    --blanco: #fff;
+    --gris: #77736d;
+    --borde: #e8e3dc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 25px;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 460px;
+}
+
+.logo {
+    text-align: center;
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+}
+
+.logo span {
+    color: #b59d82;
+}
+
+.tarjeta {
+    background: white;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 15px 45px rgba(48,48,48,.06);
+}
+
+h1 {
+    font-size: 25px;
+    letter-spacing: -.8px;
+    margin-bottom: 8px;
+}
+
+.subtitulo {
+    font-size: 13px;
+    color: var(--gris);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.pestanas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f4f1ec;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.pestana {
+    border: 0;
+    background: transparent;
+    padding: 11px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--gris);
+    cursor: pointer;
+}
+
+.pestana.activa {
+    background: white;
+    color: var(--texto);
+    box-shadow: 0 2px 7px #0000000d;
+}
+
+.campo {
+    margin-bottom: 17px;
+}
+
+label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--borde);
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #bda88f;
+}
+
+.boton {
+    width: 100%;
+    border: 0;
+    border-radius: 9px;
+    background: var(--texto);
+    color: white;
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.boton:hover {
+    background: #555;
+}
+
+.boton:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.mensaje {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 15px;
+    text-align: center;
+    min-height: 18px;
+    overflow-wrap: anywhere;
+}
+
+.mensaje.error {
+    color: #b85c55;
+}
+
+.mensaje.ok {
+    color: #47775b;
+}
+
+.volver {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 12px;
+    color: var(--gris);
+}
+
+.volver a {
+    color: var(--texto);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.oculto {
+    display: none;
+}
+
+.nota {
+    font-size: 11px;
+    color: var(--gris);
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+@media(max-width:480px) {
+    .tarjeta {
+        padding: 25px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="logo">nexiuma<span>.</span></div>
+
+    <div class="tarjeta">
+
+        <h1 id="titulo">Creá tu cuenta</h1>
+
+        <p class="subtitulo" id="subtitulo">
+            Comenzá a organizar tus turnos y administrar tu negocio.
+        </p>
+
+        <div class="pestanas">
+            <button class="pestana activa" id="tabRegistro" type="button">
+                Crear cuenta
+            </button>
+
+            <button class="pestana" id="tabLogin" type="button">
+                Iniciar sesión
+            </button>
+        </div>
+
+        <form id="formulario">
+
+            <div class="campo" id="campoNegocio">
+                <label for="nombre">Nombre de tu negocio</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Ej. Bellissima Nails by Gera"
+                    autocomplete="organization"
+                >
+            </div>
+
+            <div class="campo">
+                <label for="email">Correo electrónico</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="tu@email.com"
+                    required
+                    autocomplete="email"
+                >
+            </div>
+
+            <div class="campo">
+                <label for="password">Contraseña</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Mínimo 8 caracteres"
+                    required
+                    minlength="8"
+                    autocomplete="new-password"
+                >
+            </div>
+
+            <button class="boton" id="botonEnviar" type="submit">
+                Crear mi cuenta
+            </button>
+
+            <p class="mensaje" id="mensaje"></p>
+
+        </form>
+
+        <p class="nota" id="notaRegistro">
+            Al crear tu cuenta podrás administrar tu agenda y compartir tu enlace de reservas con tus clientes.
+        </p>
+
+    </div>
+
+    <p class="volver">
+        <a href="index.html">← Volver a Nexiuma</a>
+    </p>
+
+</div>
+
+<script>
+const API = "http://localhost:3001/api";
+
+const formulario = document.getElementById("formulario");
+const campoNegocio = document.getElementById("campoNegocio");
+const nombre = document.getElementById("nombre");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const botonEnviar = document.getElementById("botonEnviar");
+const mensaje = document.getElementById("mensaje");
+const titulo = document.getElementById("titulo");
+const subtitulo = document.getElementById("subtitulo");
+const notaRegistro = document.getElementById("notaRegistro");
+const tabRegistro = document.getElementById("tabRegistro");
+const tabLogin = document.getElementById("tabLogin");
+
+let modo = new URLSearchParams(location.search).get("modo") === "login"
+    ? "login"
+    : "registro";
+
+function cambiarModo(nuevoModo) {
+    modo = nuevoModo;
+
+    const registro = modo === "registro";
+
+    titulo.textContent = registro
+        ? "Creá tu cuenta"
+        : "¡Qué bueno verte!";
+
+    subtitulo.textContent = registro
+        ? "Comenzá a organizar tus turnos y administrar tu negocio."
+        : "Ingresá a tu espacio profesional de Nexiuma.";
+
+    campoNegocio.classList.toggle("oculto", !registro);
+    nombre.required = registro;
+
+    tabRegistro.classList.toggle("activa", registro);
+    tabLogin.classList.toggle("activa", !registro);
+
+    botonEnviar.textContent = registro
+        ? "Crear mi cuenta"
+        : "Iniciar sesión";
+
+    password.autocomplete = registro
+        ? "new-password"
+        : "current-password";
+
+    notaRegistro.classList.toggle("oculto", !registro);
+
+    mensaje.textContent = "";
+    mensaje.className = "mensaje";
+
+    history.replaceState({}, "", `acceso.html?modo=${modo}`);
+}
+
+tabRegistro.addEventListener("click", () => cambiarModo("registro"));
+tabLogin.addEventListener("click", () => cambiarModo("login"));
+
+formulario.addEventListener("submit", async evento => {
+
+    evento.preventDefault();
+
+    const registro = modo === "registro";
+
+    const datos = {
+        email: email.value.trim().toLowerCase(),
+        password: password.value
+    };
+
+    if (registro) {
+        datos.nombre = nombre.value.trim();
+    }
+
+    botonEnviar.disabled = true;
+    botonEnviar.textContent = "Un momento...";
+
+    mensaje.textContent = "";
+    mensaje.className = "mensaje";
+
+    try {
+
+        const url = `${API}/auth/${registro ? "registro" : "login"}`;
+
+        console.log("Enviando solicitud a:", url);
+
+        const respuesta = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const texto = await respuesta.text();
+
+        console.log("Respuesta del servidor:", texto);
+
+        let resultado;
+
+        try {
+            resultado = JSON.parse(texto);
+        } catch {
+            throw new Error(
+                "El servidor respondió algo que no es JSON. Respuesta: " +
+                texto.substring(0, 200)
+            );
+        }
+
+        if (!respuesta.ok) {
+            throw new Error(
+                resultado.mensaje || "No se pudo completar el acceso."
+            );
+        }
+
+        if (!resultado.token) {
+            throw new Error(
+                "El servidor no devolvió el token de acceso."
+            );
+        }
+
+        localStorage.setItem("nexiuma_token", resultado.token);
+
+        if (resultado.profesional) {
+            localStorage.setItem(
+                "nexiuma_profesional",
+                resultado.profesional
+            );
+        }
+
+        mensaje.textContent = registro
+            ? "¡Tu cuenta fue creada! Entrando a tu agenda..."
+            : "¡Bienvenida nuevamente! Entrando a tu agenda...";
+
+        mensaje.className = "mensaje ok";
+
+        location.href = "profesional.html";
+
+    } catch (error) {
+
+        console.error("Error de acceso:", error);
+
+        mensaje.textContent = error.message;
+        mensaje.className = "mensaje error";
+
+    } finally {
+
+        botonEnviar.disabled = false;
+
+        botonEnviar.textContent = registro
+            ? "Crear mi cuenta"
+            : "Iniciar sesión";
+    }
+
+});
+
+cambiarModo(modo);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,642 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservá tu turno | Nexiuma</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,sans-serif;background:#f7f5f1;color:#303030;min-height:100vh;padding:25px 15px}
+.contenedor{max-width:720px;margin:auto}
+.logo{text-align:center;font-size:27px;font-weight:800;margin-bottom:28px}
+.logo span{color:#c9ad91}
+.perfil{text-align:center;margin-bottom:28px}
+.avatar{width:76px;height:76px;border-radius:50%;background:#e6dbce;display:grid;place-items:center;margin:0 auto 12px;font-size:27px;color:#75604d;font-weight:800}
+.perfil h1{font-size:23px;margin-bottom:5px}
+.perfil p{font-size:13px;color:#888}
+.progreso{display:flex;align-items:center;gap:7px;margin:0 auto 25px;max-width:500px}
+.paso{height:4px;background:#e4ded6;border-radius:10px;flex:1}
+.paso.activo{background:#b99e82}
+.panel{background:white;border-radius:18px;padding:27px;box-shadow:0 8px 30px #30303008}
+h2{font-size:21px;margin-bottom:7px}
+.intro{font-size:13px;color:#888;line-height:1.6;margin-bottom:22px}
+.grid-categorias{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.categoria{border:1px solid #e8e1d9;background:#fff;border-radius:13px;padding:20px 15px;text-align:left;cursor:pointer;font-family:inherit;transition:.2s}
+.categoria:hover,.categoria:focus{border-color:#b99e82;background:#faf7f3}
+.categoria strong{display:block;font-size:15px;margin-bottom:5px}
+.categoria small{color:#999;font-size:12px}
+.lista-servicios{display:grid;gap:12px}
+.servicio{border:1px solid #e8e1d9;border-radius:13px;padding:17px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;background:#fff;text-align:left;font-family:inherit}
+.servicio:hover{border-color:#b99e82;background:#faf7f3}
+.servicio strong{display:block;font-size:14px;margin-bottom:5px}
+.servicio small{font-size:12px;color:#888}
+.servicio .precio{font-weight:800;white-space:nowrap;font-size:14px}
+.boton{border:0;background:#d6c4b0;color:#303030;border-radius:10px;padding:15px 20px;font-family:inherit;font-weight:800;cursor:pointer}
+.boton:hover{background:#c8b29b}
+.boton:disabled{opacity:.5;cursor:not-allowed}
+.boton-secundario{border:1px solid #ded6cd;background:white;color:#555;border-radius:10px;padding:13px 18px;font-family:inherit;font-weight:700;cursor:pointer}
+.acciones{display:flex;gap:10px;margin-top:22px}
+.acciones button{flex:1}
+.campo{margin-bottom:17px}
+label{display:block;font-size:13px;font-weight:700;margin-bottom:8px}
+input{width:100%;padding:14px;border:1px solid #ded6cd;border-radius:9px;font:inherit;font-size:14px;background:white}
+input:focus{outline:2px solid #d6c4b0;border-color:#d6c4b0}
+.iti{width:100%}
+.iti input{width:100%}
+.iti__country-list{z-index:20}
+.horarios{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}
+.horario{padding:12px 5px;border:1px solid #ded6cd;background:white;border-radius:9px;font-family:inherit;cursor:pointer}
+.horario:hover,.horario.elegido{background:#d6c4b0;border-color:#d6c4b0;font-weight:800}
+
+/* CALENDARIO */
+.calendario{border:1px solid #e8e1d9;border-radius:14px;padding:18px;margin:8px 0 22px;background:#fff}
+.calendario-cabecera{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.calendario-mes{font-size:16px;font-weight:800;text-transform:capitalize}
+.calendario-nav{width:36px;height:36px;border:1px solid #e8e1d9;border-radius:9px;background:#fff;color:#75604d;font-size:20px;cursor:pointer}
+.calendario-nav:disabled{opacity:.3;cursor:not-allowed}
+.calendario-dias,.calendario-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;text-align:center}
+.calendario-dias{margin-bottom:9px;color:#999;font-size:11px;font-weight:800}
+.dia-calendario{aspect-ratio:1;border:1px solid transparent;border-radius:10px;background:#fff;font:inherit;font-size:13px;cursor:pointer;color:#303030}
+.dia-calendario:hover:not(:disabled){border-color:#b99e82;background:#faf7f3}
+.dia-calendario:disabled{color:#d2ccc5;cursor:not-allowed}
+.dia-calendario.elegido{background:#d6c4b0;border-color:#d6c4b0;font-weight:800;color:#303030}
+.dia-calendario.hoy{border-color:#b99e82}
+.dia-vacio{aspect-ratio:1}
+
+.resumen{background:#f8f5f1;padding:17px;border-radius:12px;margin-bottom:20px;font-size:13px;line-height:2}
+.resumen strong{display:inline-block;min-width:95px}
+.error{color:#b33b3b;font-size:12px;margin-top:10px;line-height:1.5}
+.exito{text-align:center;padding:20px 5px}
+.check{width:65px;height:65px;border-radius:50%;background:#edf5ee;color:#39815b;display:grid;place-items:center;font-size:32px;margin:0 auto 18px}
+.exito h2{font-size:24px;margin-bottom:10px}
+.oculto{display:none!important}
+.volver{display:inline-block;color:#8c7258;font-size:13px;font-weight:700;text-decoration:none;margin-bottom:18px;cursor:pointer}
+.pie{text-align:center;color:#aaa;font-size:11px;margin-top:22px}
+
+@media(max-width:500px){
+.panel{padding:21px}
+.grid-categorias{gap:9px}
+.categoria{padding:16px 12px}
+.horarios{grid-template-columns:repeat(3,1fr)}
+.calendario{padding:13px}
+.calendario-dias,.calendario-grid{gap:4px}
+.dia-calendario{font-size:12px}
+}
+</style>
+</head>
+
+<body>
+<main class="contenedor">
+  <div class="logo">Nexiuma<span>.</span></div>
+
+  <header class="perfil">
+    <div class="avatar" id="avatar">P</div>
+    <h1 id="nombreProfesional">Reservá tu turno</h1>
+    <p>Elegí el servicio y encontrá el horario que mejor te quede.</p>
+  </header>
+
+  <div class="progreso" id="progreso">
+    <div class="paso activo"></div>
+    <div class="paso"></div>
+    <div class="paso"></div>
+    <div class="paso"></div>
+  </div>
+
+  <section class="panel" id="pantallaCategorias">
+    <h2>¿Qué servicio estás buscando?</h2>
+    <p class="intro">Seleccioná una categoría para conocer los servicios disponibles.</p>
+    <div class="grid-categorias" id="categorias"></div>
+    <p class="error" id="errorCatalogo"></p>
+  </section>
+
+  <section class="panel oculto" id="pantallaServicios">
+    <a class="volver" id="volverCategorias">← Volver a categorías</a>
+    <h2 id="tituloCategoria">Servicios</h2>
+    <p class="intro">Elegí el servicio que querés reservar.</p>
+    <div class="lista-servicios" id="listaServicios"></div>
+  </section>
+
+  <section class="panel oculto" id="pantallaFecha">
+    <a class="volver" id="volverServicios">← Volver a servicios</a>
+    <h2>Elegí fecha y horario</h2>
+    <p class="intro" id="resumenServicio"></p>
+
+    <div class="calendario">
+      <div class="calendario-cabecera">
+        <button class="calendario-nav" type="button" id="mesAnterior" aria-label="Mes anterior">‹</button>
+        <span class="calendario-mes" id="mesActual"></span>
+        <button class="calendario-nav" type="button" id="mesSiguiente" aria-label="Mes siguiente">›</button>
+      </div>
+
+      <div class="calendario-dias">
+        <span>LU</span><span>MA</span><span>MI</span>
+        <span>JU</span><span>VI</span><span>SÁ</span><span>DO</span>
+      </div>
+
+      <div class="calendario-grid" id="diasCalendario"></div>
+    </div>
+
+    <label>Horarios disponibles</label>
+    <div class="horarios" id="horarios">
+      <p class="intro">Seleccioná un día del calendario para consultar los horarios.</p>
+    </div>
+
+    <p class="error" id="errorHorarios"></p>
+
+    <div class="acciones">
+      <button class="boton" id="continuarDatos" disabled>Continuar</button>
+    </div>
+  </section>
+
+  <section class="panel oculto" id="pantallaDatos">
+    <a class="volver" id="volverFecha">← Volver a fecha y horario</a>
+    <h2>Completá tus datos</h2>
+    <p class="intro">Ya casi terminamos. Necesitamos estos datos para confirmar tu turno.</p>
+
+    <div class="resumen" id="resumenFinal"></div>
+
+    <form id="formReserva">
+      <div class="campo">
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" type="text" placeholder="Tu nombre" autocomplete="name" required>
+      </div>
+
+      <div class="campo">
+        <label for="whatsapp">Celular / WhatsApp</label>
+        <input id="whatsapp" type="tel" placeholder="Tu número" autocomplete="tel" required>
+        <p class="intro" style="margin:7px 0 0">Elegí tu país e ingresá tu número completo.</p>
+        <p class="error" id="errorTelefono"></p>
+      </div>
+
+      <p class="error" id="errorReserva"></p>
+      <button class="boton" id="confirmar" type="submit" style="width:100%">Confirmar mi reserva</button>
+    </form>
+  </section>
+
+  <section class="panel oculto" id="pantallaExito">
+    <div class="exito">
+      <div class="check">✓</div>
+      <h2>¡Tu turno está confirmado!</h2>
+      <p class="intro">Tu reserva se registró correctamente. Estos son los detalles:</p>
+      <div class="resumen" id="resumenExito" style="text-align:left"></div>
+      <button class="boton" id="compartirWhatsapp" style="width:100%;background:#25D366;color:white">Compartir por WhatsApp</button>
+      <button class="boton-secundario" id="compartir" style="width:100%;margin-top:10px">Compartir confirmación</button>
+    </div>
+  </section>
+
+  <footer class="pie">Reservas gestionadas con Nexiuma.</footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+
+<script>
+const API = "http://localhost:3001/api";
+const profesional = new URLSearchParams(location.search).get("profesional");
+
+const pantallas = {
+  categorias: document.getElementById("pantallaCategorias"),
+  servicios: document.getElementById("pantallaServicios"),
+  fecha: document.getElementById("pantallaFecha"),
+  datos: document.getElementById("pantallaDatos"),
+  exito: document.getElementById("pantallaExito")
+};
+
+let catalogo = [];
+let categoriaElegida = null;
+let servicioElegido = null;
+let horaElegida = null;
+let telefono = null;
+let reservaConfirmada = null;
+
+function mostrarPantalla(nombre, paso) {
+  Object.values(pantallas).forEach(p => p.classList.add("oculto"));
+  pantallas[nombre].classList.remove("oculto");
+
+  document.querySelectorAll(".progreso .paso").forEach((p, i) => {
+    p.classList.toggle("activo", i < paso);
+  });
+
+  document.getElementById("progreso").classList.toggle("oculto", nombre === "exito");
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function textoSeguro(valor) {
+  return String(valor ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  })[c]);
+}
+
+function precioTexto(valor) {
+  if (valor === null || valor === undefined || valor === "") return "Consultar precio";
+  return "$ " + Number(valor).toLocaleString("es-UY");
+}
+
+function nombreBonito(valor) {
+  return valor.replace(/[-_]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+}
+
+async function cargarCatalogo() {
+  if (!profesional) {
+    document.getElementById("errorCatalogo").textContent =
+      "Este enlace no identifica al profesional. Revisá el enlace de reserva.";
+    return;
+  }
+
+  document.getElementById("nombreProfesional").textContent = nombreBonito(profesional);
+  document.getElementById("avatar").textContent = nombreBonito(profesional).charAt(0);
+
+  try {
+    const respuesta = await fetch(
+      `${API}/reservas/catalogo?profesional=${encodeURIComponent(profesional)}`
+    );
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) throw new Error(datos.mensaje || "No se pudo cargar el catálogo.");
+
+    catalogo = datos.categorias || [];
+    pintarCategorias();
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById("errorCatalogo").textContent =
+      "No pudimos cargar los servicios. Verificá que el servidor esté funcionando.";
+  }
+}
+
+function pintarCategorias() {
+  const contenedor = document.getElementById("categorias");
+  contenedor.innerHTML = "";
+
+  catalogo.forEach((categoria, indice) => {
+    const boton = document.createElement("button");
+    boton.className = "categoria";
+    boton.type = "button";
+    boton.innerHTML = `
+      <strong>${textoSeguro(categoria.categoria)}</strong>
+      <small>${(categoria.servicios || []).length} servicios · Ver opciones →</small>
+    `;
+
+    boton.addEventListener("click", () => elegirCategoria(indice));
+    contenedor.appendChild(boton);
+  });
+
+  if (!catalogo.length) {
+    contenedor.innerHTML = '<p class="intro">Este profesional todavía no tiene servicios publicados.</p>';
+  }
+}
+
+function elegirCategoria(indice) {
+  categoriaElegida = catalogo[indice];
+  document.getElementById("tituloCategoria").textContent = categoriaElegida.categoria;
+
+  const lista = document.getElementById("listaServicios");
+  lista.innerHTML = "";
+
+  (categoriaElegida.servicios || []).forEach(servicio => {
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "servicio";
+
+    const precio = precioTexto(servicio.precio);
+    const duracion = Number(servicio.duracion) || 60;
+
+    boton.innerHTML = `
+      <span>
+        <strong>${textoSeguro(servicio.nombre)}</strong>
+        <small>${duracion} minutos${servicio.descripcion ? " · " + textoSeguro(servicio.descripcion) : ""}</small>
+        ${servicio.sena != null ? `<small>Seña: ${precioTexto(servicio.sena)}</small>` : ""}
+      </span>
+      <span class="precio">${precio}</span>
+    `;
+
+    boton.addEventListener("click", () => elegirServicio(servicio));
+    lista.appendChild(boton);
+  });
+
+  mostrarPantalla("servicios", 1);
+}
+
+function elegirServicio(servicio) {
+  servicioElegido = servicio;
+  horaElegida = null;
+  fechaSeleccionada = "";
+
+  document.getElementById("resumenServicio").textContent =
+    `${servicio.nombre} · ${servicio.duracion || 60} minutos · ${precioTexto(servicio.precio)}`;
+
+  document.getElementById("horarios").innerHTML =
+    '<p class="intro">Seleccioná un día del calendario para consultar los horarios.</p>';
+
+  document.getElementById("continuarDatos").disabled = true;
+  document.getElementById("errorHorarios").textContent = "";
+
+  pintarCalendario();
+  mostrarPantalla("fecha", 2);
+}
+
+document.getElementById("volverCategorias").addEventListener("click", () => mostrarPantalla("categorias", 1));
+document.getElementById("volverServicios").addEventListener("click", () => mostrarPantalla("servicios", 1));
+document.getElementById("volverFecha").addEventListener("click", () => mostrarPantalla("fecha", 2));
+
+/* CALENDARIO MENSUAL */
+
+const hoy = new Date();
+hoy.setHours(0, 0, 0, 0);
+
+let mesMostrado = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+let fechaSeleccionada = "";
+
+function fechaLocalISO(fecha) {
+  return `${fecha.getFullYear()}-${String(fecha.getMonth()+1).padStart(2,"0")}-${String(fecha.getDate()).padStart(2,"0")}`;
+}
+
+function pintarCalendario() {
+  document.getElementById("mesActual").textContent =
+    mesMostrado.toLocaleDateString("es-UY", {month:"long", year:"numeric"});
+
+  const grilla = document.getElementById("diasCalendario");
+  grilla.innerHTML = "";
+
+  const primero = new Date(mesMostrado.getFullYear(), mesMostrado.getMonth(), 1);
+  const huecos = (primero.getDay() + 6) % 7;
+  const total = new Date(mesMostrado.getFullYear(), mesMostrado.getMonth()+1, 0).getDate();
+
+  for (let i = 0; i < huecos; i++) {
+    const vacio = document.createElement("span");
+    vacio.className = "dia-vacio";
+    grilla.appendChild(vacio);
+  }
+
+  for (let dia = 1; dia <= total; dia++) {
+    const fecha = new Date(mesMostrado.getFullYear(), mesMostrado.getMonth(), dia);
+    const iso = fechaLocalISO(fecha);
+
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = "dia-calendario";
+    boton.textContent = dia;
+
+    // Deshabilita días pasados y domingos.
+    boton.disabled = fecha < hoy || fecha.getDay() === 0;
+
+    if (iso === fechaLocalISO(hoy)) boton.classList.add("hoy");
+    if (iso === fechaSeleccionada) boton.classList.add("elegido");
+
+    boton.addEventListener("click", () => {
+      fechaSeleccionada = iso;
+      pintarCalendario();
+      cargarHorarios();
+    });
+
+    grilla.appendChild(boton);
+  }
+
+  document.getElementById("mesAnterior").disabled =
+    mesMostrado.getFullYear() === hoy.getFullYear() &&
+    mesMostrado.getMonth() === hoy.getMonth();
+}
+
+document.getElementById("mesAnterior").addEventListener("click", () => {
+  mesMostrado = new Date(mesMostrado.getFullYear(), mesMostrado.getMonth()-1, 1);
+  pintarCalendario();
+});
+
+document.getElementById("mesSiguiente").addEventListener("click", () => {
+  mesMostrado = new Date(mesMostrado.getFullYear(), mesMostrado.getMonth()+1, 1);
+  pintarCalendario();
+});
+
+pintarCalendario();
+
+/* CONSULTAR HORARIOS */
+
+async function cargarHorarios() {
+  horaElegida = null;
+  document.getElementById("continuarDatos").disabled = true;
+
+  const contenedor = document.getElementById("horarios");
+  const errorElemento = document.getElementById("errorHorarios");
+  errorElemento.textContent = "";
+
+  if (!fechaSeleccionada || !servicioElegido) return;
+
+  contenedor.innerHTML = '<p class="intro">Buscando horarios disponibles...</p>';
+
+  try {
+    const url = `${API}/reservas/disponibles?profesional=${encodeURIComponent(profesional)}&fecha=${encodeURIComponent(fechaSeleccionada)}&servicio=${encodeURIComponent(servicioElegido.nombre)}`;
+
+    const respuesta = await fetch(url);
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(datos.mensaje || "No se pudieron consultar los horarios.");
+    }
+
+    contenedor.innerHTML = "";
+
+    if (!Array.isArray(datos.horarios) || datos.horarios.length === 0) {
+      contenedor.innerHTML =
+        '<p class="intro">No hay horarios disponibles para ese día. Probá con otra fecha.</p>';
+      return;
+    }
+
+    datos.horarios.forEach(horario => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.className = "horario";
+      boton.textContent = horario;
+
+      boton.addEventListener("click", () => {
+        document.querySelectorAll(".horario").forEach(b => b.classList.remove("elegido"));
+        boton.classList.add("elegido");
+        horaElegida = horario;
+        document.getElementById("continuarDatos").disabled = false;
+      });
+
+      contenedor.appendChild(boton);
+    });
+
+  } catch (error) {
+    console.error("Error al cargar horarios:", error);
+    contenedor.innerHTML = "";
+    errorElemento.textContent = error.message || "No pudimos consultar los horarios.";
+  }
+}
+
+/* PASAR A DATOS DEL CLIENTE */
+
+document.getElementById("continuarDatos").addEventListener("click", () => {
+  if (!horaElegida) return;
+
+  const fechaBonita = new Date(fechaSeleccionada + "T12:00:00").toLocaleDateString("es-UY", {
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+  document.getElementById("resumenFinal").innerHTML = `
+    <div><strong>Servicio:</strong> ${textoSeguro(servicioElegido.nombre)}</div>
+    <div><strong>Fecha:</strong> ${textoSeguro(fechaBonita)}</div>
+    <div><strong>Hora:</strong> ${textoSeguro(horaElegida)}</div>
+    <div><strong>Duración:</strong> ${Number(servicioElegido.duracion) || 60} minutos</div>
+    <div><strong>Precio:</strong> ${textoSeguro(precioTexto(servicioElegido.precio))}</div>
+    ${servicioElegido.sena != null ? `<div><strong>Seña:</strong> ${textoSeguro(precioTexto(servicioElegido.sena))}</div>` : ""}
+  `;
+
+  mostrarPantalla("datos", 3);
+});
+
+/* TELÉFONO INTERNACIONAL */
+
+if (typeof window.intlTelInput === "function") {
+  telefono = window.intlTelInput(document.getElementById("whatsapp"), {
+    initialCountry:"uy",
+    separateDialCode:true,
+    nationalMode:true,
+    strictMode:true,
+    preferredCountries:["uy","ar","br","us","es"],
+    loadUtils:() => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js")
+  });
+}
+
+/* CONFIRMAR RESERVA */
+
+document.getElementById("formReserva").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const error = document.getElementById("errorReserva");
+  const errorTelefono = document.getElementById("errorTelefono");
+  const boton = document.getElementById("confirmar");
+
+  error.textContent = "";
+  errorTelefono.textContent = "";
+
+  if (!telefono) {
+    errorTelefono.textContent =
+      "No se pudo cargar el selector de países. Recargá la página e intentá nuevamente.";
+    return;
+  }
+
+  try {
+    await telefono.promise;
+
+    if (!telefono.isValidNumber()) {
+      errorTelefono.textContent =
+        "Ingresá un número completo y válido para el país seleccionado.";
+      return;
+    }
+
+    boton.disabled = true;
+    boton.textContent = "Confirmando reserva...";
+
+    const datos = {
+      profesional,
+      servicio: servicioElegido.nombre,
+      fecha: fechaSeleccionada,
+      hora: horaElegida,
+      nombre: document.getElementById("nombre").value.trim(),
+      whatsapp: telefono.getNumber()
+    };
+
+    const respuesta = await fetch(`${API}/reservas`, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(datos)
+    });
+
+    const resultado = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(resultado.mensaje || "No se pudo confirmar la reserva.");
+    }
+
+    reservaConfirmada = {
+      ...datos,
+      precio: servicioElegido.precio,
+      sena: servicioElegido.sena,
+      duracion: servicioElegido.duracion
+    };
+
+    mostrarExito();
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById("errorReserva").textContent =
+      error.message || "Ocurrió un error al confirmar la reserva.";
+  } finally {
+    boton.disabled = false;
+    boton.textContent = "Confirmar mi reserva";
+  }
+});
+
+/* PANTALLA DE CONFIRMACIÓN */
+
+function mostrarExito() {
+  const datos = reservaConfirmada;
+
+  const fechaBonita = new Date(datos.fecha + "T12:00:00").toLocaleDateString("es-UY", {
+    weekday:"long",
+    day:"numeric",
+    month:"long",
+    year:"numeric"
+  });
+
+  document.getElementById("resumenExito").innerHTML = `
+    <div><strong>Profesional:</strong> ${textoSeguro(nombreBonito(datos.profesional))}</div>
+    <div><strong>Servicio:</strong> ${textoSeguro(datos.servicio)}</div>
+    <div><strong>Fecha:</strong> ${textoSeguro(fechaBonita)}</div>
+    <div><strong>Hora:</strong> ${textoSeguro(datos.hora)}</div>
+    <div><strong>Nombre:</strong> ${textoSeguro(datos.nombre)}</div>
+    <div><strong>Precio:</strong> ${textoSeguro(precioTexto(datos.precio))}</div>
+  `;
+
+  mostrarPantalla("exito", 4);
+}
+
+function textoCompartir() {
+  const d = reservaConfirmada;
+
+  return `¡Mi turno está confirmado en Nexiuma!
+
+Profesional: ${nombreBonito(d.profesional)}
+Servicio: ${d.servicio}
+Fecha: ${d.fecha}
+Hora: ${d.hora}
+Nombre: ${d.nombre}`;
+}
+
+document.getElementById("compartirWhatsapp").addEventListener("click", () => {
+  window.open("https://wa.me/?text=" + encodeURIComponent(textoCompartir()), "_blank");
+});
+
+document.getElementById("compartir").addEventListener("click", async () => {
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title:"Mi reserva en Nexiuma",
+        text:textoCompartir()
+      });
+    } catch (error) {
+      if (error.name !== "AbortError") console.error(error);
+    }
+  } else {
+    window.open("https://wa.me/?text=" + encodeURIComponent(textoCompartir()), "_blank");
+  }
+});
+
+cargarCatalogo();
+</script>
+</body>
+</html>

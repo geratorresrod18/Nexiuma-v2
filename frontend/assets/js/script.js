@@ -1,99 +1,94 @@
+// HEADER: efecto al desplazarse
 const header = document.querySelector("header");
 
-window.addEventListener("scroll", function () {
-
-    if (window.scrollY > 20) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-
-});
-
-
-
-const cards = document.querySelectorAll(".card-funciones");
-
-const posiciones = [
-    "left2",
-    "left1",
-    "active",
-    "right1",
-    "right2"
-];
-
-function actualizar() {
-
-    cards.forEach((card, i) => {
-
-        card.classList.remove(
-            "left2",
-            "left1",
-            "active",
-            "right1",
-            "right2"
-        );
-
-        card.classList.add(posiciones[i]);
-
+if (header) {
+    window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 20);
     });
-
 }
 
-function siguiente(){
-
-    posiciones.push(posiciones.shift());
-
-    actualizar();
-
-}
-
-function anterior(){
-
-    posiciones.unshift(posiciones.pop());
-
-    actualizar();
-
-}
-
+// CARRUSEL DE FUNCIONES
+const cards = document.querySelectorAll(".card-funciones");
 const botonSiguiente = document.querySelector(".next");
 const botonAnterior = document.querySelector(".prev");
 
-if (botonSiguiente && botonAnterior) {
+const posiciones = ["left2", "left1", "active", "right1", "right2"];
 
-    botonSiguiente.addEventListener("click", siguiente);
+function actualizarCarrusel() {
+    cards.forEach((card, index) => {
+        card.classList.remove("left2", "left1", "active", "right1", "right2");
 
-    botonAnterior.addEventListener("click", anterior);
-
-    setInterval(siguiente, 2500);
-
-    actualizar();
-
+        if (posiciones[index]) {
+            card.classList.add(posiciones[index]);
+        }
+    });
 }
 
+function siguiente() {
+    posiciones.push(posiciones.shift());
+    actualizarCarrusel();
+}
 
+function anterior() {
+    posiciones.unshift(posiciones.pop());
+    actualizarCarrusel();
+}
 
+if (cards.length === posiciones.length) {
+    actualizarCarrusel();
+
+    botonSiguiente?.addEventListener("click", siguiente);
+    botonAnterior?.addEventListener("click", anterior);
+
+    let intervaloCarrusel = setInterval(siguiente, 3500);
+
+    const carrusel = document.querySelector(".carrusel");
+
+    // Pausa automática cuando el usuario interactúa con el carrusel.
+    if (carrusel) {
+        carrusel.addEventListener("mouseenter", () => {
+            clearInterval(intervaloCarrusel);
+        });
+
+        carrusel.addEventListener("mouseleave", () => {
+            clearInterval(intervaloCarrusel);
+            intervaloCarrusel = setInterval(siguiente, 3500);
+        });
+    }
+}
 
 // FORMULARIO DE CONTACTO
-
 const formulario = document.querySelector("#formContacto");
+const estadoContacto = document.querySelector("#estadoContacto");
 
 if (formulario) {
-
-    formulario.addEventListener("submit", async function(event) {
-
+    formulario.addEventListener("submit", async (event) => {
         event.preventDefault();
 
+        const boton = formulario.querySelector('button[type="submit"]');
         const datos = {
-            nombre: document.querySelector("#nombre").value,
-            email: document.querySelector("#email").value,
-            whatsapp: document.querySelector("#whatsapp").value,
-            profesion: document.querySelector("#profesion").value,
-            mensaje: document.querySelector("#mensaje").value
+            nombre: formulario.querySelector("#nombre").value.trim(),
+            email: formulario.querySelector("#email").value.trim(),
+            whatsapp: formulario.querySelector("#whatsapp").value.trim(),
+            profesion: formulario.querySelector("#profesion").value.trim(),
+            mensaje: formulario.querySelector("#mensaje").value.trim()
         };
 
-        try {
+        if (!datos.nombre || !datos.email || !datos.whatsapp || !datos.mensaje) {
+            if (estadoContacto) {
+                estadoContacto.textContent = "Completá todos los campos obligatorios.";
+            }
+            return;
+        }
 
+        boton.disabled = true;
+        boton.textContent = "Enviando...";
+
+        if (estadoContacto) {
+            estadoContacto.textContent = "";
+        }
+
+        try {
             const respuesta = await fetch("http://localhost:3001/api/contacto", {
                 method: "POST",
                 headers: {
@@ -103,27 +98,28 @@ if (formulario) {
             });
 
             const resultado = await respuesta.json();
-            console.log("Respuesta del servidor:", resultado);
 
             if (!respuesta.ok) {
-                throw new Error("No se pudo enviar la consulta");
+                throw new Error(resultado.mensaje || "No se pudo enviar la consulta.");
             }
 
             formulario.innerHTML = `
                 <div class="mensaje-exito">
                     <h2>¡Recibimos tus datos!</h2>
-                    <p>${resultado.mensaje}</p>
+                    <p>${resultado.mensaje || "Tu consulta fue enviada correctamente."}</p>
+                    <p>Gracias por comunicarte con Nexiuma.</p>
                 </div>
             `;
-
         } catch (error) {
+            console.error("Error al enviar la consulta:", error);
 
-            console.error("Error al enviar:", error);
+            if (estadoContacto) {
+                estadoContacto.textContent =
+                    error.message || "No pudimos enviar tu consulta. Intentá nuevamente.";
+            }
 
-            alert("No pudimos enviar tu consulta. Intentá nuevamente.");
-
+            boton.disabled = false;
+            boton.textContent = "Enviar consulta";
         }
-
     });
-
 }

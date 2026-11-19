@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configuración | Nexiuma</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--fondo:#f5f3ee;--blanco:#fff;--texto:#303030;--gris:#77736d;--beige:#d6c4b0;--claro:#eee7de;--borde:#e9e5df;--verde:#47775b;--rojo:#b85c55}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Manrope,sans-serif;background:var(--fondo);color:var(--texto);padding:35px 18px}
+main{max-width:1050px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px;flex-wrap:wrap}
+.logo{font-size:26px;font-weight:800}.logo span{color:#b59d82}
+h1{font-size:26px;margin-bottom:5px}h2{font-size:18px;margin-bottom:7px}
+p.sub{font-size:13px;color:var(--gris);margin-bottom:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{border:0;border-radius:9px;padding:12px 17px;background:white;color:var(--texto);font-weight:700;cursor:pointer}
+.tab.active{background:var(--texto);color:white}
+.panel{background:white;border:1px solid var(--borde);border-radius:16px;padding:25px;margin-bottom:18px}
+.seccion{display:none}.seccion.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo.full{grid-column:1/-1}
+label{font-size:12px;font-weight:800}
+input,select,textarea{width:100%;padding:12px;border:1px solid var(--borde);border-radius:9px;font:inherit;font-size:13px;color:var(--texto);background:white}
+textarea{min-height:85px;resize:vertical}
+button{font-family:inherit}
+.btn{border:0;border-radius:9px;padding:11px 16px;font-weight:800;font-size:12px;cursor:pointer}
+.primary{background:var(--texto);color:white}.light{background:var(--claro);color:var(--texto)}.danger{background:#f8e9e7;color:var(--rojo)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.msg{font-size:13px;margin-top:14px;min-height:20px}.ok{color:var(--verde)}.error{color:var(--rojo)}
+.dia{display:grid;grid-template-columns:110px 90px repeat(4,minmax(100px,1fr));gap:9px;align-items:center;padding:13px 0;border-bottom:1px solid var(--borde)}
+.dia:last-child{border:0}.dia strong{font-size:13px}.dia label{display:flex;gap:6px;align-items:center}.dia input[type=checkbox]{width:auto}
+.dia input[type=time]{padding:9px}
+.categoria{border:1px solid var(--borde);border-radius:12px;padding:17px;margin:15px 0}
+.categoria-top{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.categoria-top input{font-weight:800}
+.servicio{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:9px;align-items:end;margin:10px 0}
+.servicio .campo label{font-size:11px}
+.nota{font-size:12px;color:var(--gris);margin:12px 0}
+@media(max-width:760px){body{padding:20px 12px}.panel{padding:17px}.grid{grid-template-columns:1fr}.campo.full{grid-column:auto}.dia{grid-template-columns:80px 75px 1fr 1fr}.dia .descanso{grid-column:3/5}.servicio{grid-template-columns:1fr 1fr}.servicio .nombre{grid-column:1/-1}.servicio button{align-self:end}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div><div class="logo">nexiuma<span>.</span></div><p class="sub">Configurá tu espacio profesional</p></div>
+  <div style="display:flex;gap:9px;flex-wrap:wrap">
+    <a href="profesional.html" class="btn light" style="text-decoration:none">Volver a mi agenda</a>
+    <button class="btn danger" id="cerrarSesion">Cerrar sesión</button>
+  </div>
+</header>
+
+<h1>Configuración de mi negocio</h1>
+<p class="sub">Tus datos, horarios y servicios se guardan en tu cuenta.</p>
+
+<nav class="tabs">
+<button class="tab active" data-tab="negocio">1. Mi negocio</button>
+<button class="tab" data-tab="horarios">2. Horarios</button>
+<button class="tab" data-tab="servicios">3. Servicios y precios</button>
+</nav>
+
+<section class="seccion active" id="negocio">
+<div class="panel">
+<h2>Datos del negocio</h2>
+<p class="sub">Esta información identifica tu espacio profesional.</p>
+<div class="grid">
+<div class="campo"><label>Nombre del negocio</label><input id="nombre" placeholder="Ej. Bellissima Nails by Gera"></div>
+<div class="campo"><label>Profesión o rubro</label><input id="rubro" placeholder="Ej. Manicuría"></div>
+<div class="campo"><label>Teléfono</label><input id="telefono" placeholder="Ej. 099 123 456"></div>
+<div class="campo"><label>WhatsApp</label><input id="whatsapp" placeholder="Ej. 099 123 456"></div>
+<div class="campo full"><label>Dirección</label><input id="direccion" placeholder="Ciudad, barrio o dirección"></div>
+<div class="campo full"><label>Descripción</label><textarea id="descripcion" placeholder="Contales a tus clientes sobre tu negocio..."></textarea></div>
+<div class="campo full"><label>URL del logo (opcional)</label><input id="logo" placeholder="https://..."></div>
+</div>
+<div class="actions"><button class="btn primary" id="guardarNegocio">Guardar datos</button></div>
+<p class="msg" id="msgNegocio"></p>
+</div>
+</section>
+
+<section class="seccion" id="horarios">
+<div class="panel">
+<h2>Mis horarios de atención</h2>
+<p class="sub">Activá los días que trabajás y configurá apertura, cierre y descanso. Los cambios afectan los horarios disponibles para reservar.</p>
+<div id="listaDias"></div>
+<div class="actions"><button class="btn primary" id="guardarHorarios">Guardar horarios</button></div>
+<p class="msg" id="msgHorarios"></p>
+</div>
+</section>
+
+<section class="seccion" id="servicios">
+<div class="panel">
+<h2>Mis servicios y precios</h2>
+<p class="sub">Organizá tus servicios por categoría. El precio y la seña se expresan en pesos uruguayos (UYU).</p>
+<div id="listaCategorias"></div>
+<div class="actions">
+<button class="btn light" id="agregarCategoria">＋ Agregar categoría</button>
+<button class="btn primary" id="guardarServicios">Guardar servicios</button>
+</div>
+<p class="msg" id="msgServicios"></p>
+</div>
+</section>
+</main>
+
+<script>
+const API = "http://localhost:3001/api";
+const token = localStorage.getItem("nexiuma_token");
+
+if (!token) {
+    location.replace("acceso.html?modo=login");
+}
+
+const dias = [
+    ["lunes","Lunes"],["martes","Martes"],["miercoles","Miércoles"],
+    ["jueves","Jueves"],["viernes","Viernes"],["sabado","Sábado"],["domingo","Domingo"]
+];
+
+let categorias = [];
+
+document.getElementById("cerrarSesion").addEventListener("click", () => {
+    localStorage.removeItem("nexiuma_token");
+    localStorage.removeItem("nexiuma_profesional");
+    location.replace("acceso.html?modo=login");
+});
+
+async function pedir(url, opciones = {}) {
+    const respuesta = await fetch(API + url, {
+        ...opciones,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+            ...(opciones.headers || {})
+        }
+    });
+
+    const contenido = await respuesta.text();
+    let data;
+
+    try {
+        data = contenido ? JSON.parse(contenido) : {};
+    } catch {
+        throw new Error("El servidor devolvió una respuesta inesperada.");
+    }
+
+    if (respuesta.status === 401) {
+        localStorage.removeItem("nexiuma_token");
+        localStorage.removeItem("nexiuma_profesional");
+        location.replace("acceso.html?modo=login");
+        throw new Error("Tu sesión venció. Iniciá sesión nuevamente.");
+    }
+
+    if (!respuesta.ok) {
+        throw new Error(data.mensaje || "No se pudo completar la operación.");
+    }
+
+    return data;
+}
+
+function mensaje(id, texto, error = false) {
+    const el = document.getElementById(id);
+    el.textContent = texto;
+    el.className = "msg " + (error ? "error" : "ok");
+}
+
+document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".tab,.seccion").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    document.getElementById(b.dataset.tab).classList.add("active");
+}));
+
+async function cargarNegocio() {
+    const d = await pedir("/profesional/configuracion");
+
+    ["nombre","rubro","telefono","whatsapp","direccion","descripcion","logo"].forEach(k => {
+        document.getElementById(k).value = d[k] || "";
+    });
+}
+
+document.getElementById("guardarNegocio").onclick = async () => {
+    try {
+        const datos = {};
+        ["nombre","rubro","telefono","whatsapp","direccion","descripcion","logo"].forEach(k => {
+            datos[k] = document.getElementById(k).value;
+        });
+
+        const r = await pedir("/profesional/configuracion", {
+            method: "PUT",
+            body: JSON.stringify(datos)
+        });
+
+        mensaje("msgNegocio", r.mensaje);
+    } catch (e) {
+        mensaje("msgNegocio", e.message, true);
+    }
+};
+
+function dibujarDias(horarios) {
+    document.getElementById("listaDias").innerHTML = dias.map(([id,nombre]) => {
+        const h = horarios[id] || {
+            activo:false,inicio:"09:00",fin:"17:00",
+            descansoInicio:"",descansoFin:""
+        };
+
+        return `<div class="dia" data-dia="${id}">
+            <strong>${nombre}</strong>
+            <label><input type="checkbox" class="activo" ${h.activo ? "checked" : ""}> Atiendo</label>
+            <div><label>Apertura</label><input type="time" class="inicio" value="${h.inicio || "09:00"}"></div>
+            <div><label>Cierre</label><input type="time" class="fin" value="${h.fin || "17:00"}"></div>
+            <div class="descanso"><label>Descanso desde</label><input type="time" class="descansoInicio" value="${h.descansoInicio || ""}"></div>
+            <div class="descanso"><label>Descanso hasta</label><input type="time" class="descansoFin" value="${h.descansoFin || ""}"></div>
+        </div>`;
+    }).join("");
+}
+
+async function cargarHorarios() {
+    const h = await pedir("/profesional/horarios");
+    dibujarDias(h);
+}
+
+document.getElementById("guardarHorarios").onclick = async () => {
+    try {
+        const horarios = {};
+
+        document.querySelectorAll(".dia").forEach(el => {
+            horarios[el.dataset.dia] = {
+                activo: el.querySelector(".activo").checked,
+                inicio: el.querySelector(".inicio").value,
+                fin: el.querySelector(".fin").value,
+                descansoInicio: el.querySelector(".descansoInicio").value,
+                descansoFin: el.querySelector(".descansoFin").value
+            };
+        });
+
+        const r = await pedir("/profesional/horarios", {
+            method: "PUT",
+            body: JSON.stringify({ horarios })
+        });
+
+        mensaje("msgHorarios", r.mensaje);
+    } catch (e) {
+        mensaje("msgHorarios", e.message, true);
+    }
+};
+
+function dibujarCategorias() {
+    const cont = document.getElementById("listaCategorias");
+
+    cont.innerHTML = categorias.map((cat,i) => `
+        <div class="categoria" data-cat="${i}">
+            <div class="categoria-top">
+                <input class="nombreCategoria" value="${esc(cat.categoria)}" aria-label="Nombre de categoría">
+                <button class="btn danger borrarCategoria" type="button">Eliminar categoría</button>
+            </div>
+            <div class="serviciosLista">
+                ${(cat.servicios || []).map(s => filaServicio(s)).join("")}
+            </div>
+            <button class="btn light agregarServicio" type="button">＋ Agregar servicio</button>
+        </div>
+    `).join("");
+
+    cont.querySelectorAll(".borrarCategoria").forEach(b => {
+        b.onclick = () => {
+            b.closest(".categoria").remove();
+        };
+    });
+
+    cont.querySelectorAll(".agregarServicio").forEach(b => {
+        b.onclick = () => {
+            const lista = b.closest(".categoria").querySelector(".serviciosLista");
+            lista.insertAdjacentHTML("beforeend", filaServicio({
+                nombre:"",duracion:60,precio:0,sena:0,descripcion:""
+            }));
+            activarBorrarServicios();
+        };
+    });
+
+    activarBorrarServicios();
+}
+
+function esc(v) {
+    return String(v ?? "").replace(/[&<>"']/g, c => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    }[c]));
+}
+
+function filaServicio(s) {
+    return `<div class="servicio">
+        <div class="campo nombre">
+            <label>Servicio</label>
+            <input class="sNombre" value="${esc(s.nombre)}" placeholder="Ej. Kapping">
+        </div>
+        <div class="campo">
+            <label>Duración (min)</label>
+            <input class="sDuracion" type="number" min="15" step="15" value="${Number(s.duracion) || 60}">
+        </div>
+        <div class="campo">
+            <label>Precio $</label>
+            <input class="sPrecio" type="number" min="0" step="1" value="${Number(s.precio) || 0}">
+        </div>
+        <div class="campo">
+            <label>Seña $</label>
+            <input class="sSena" type="number" min="0" step="1" value="${Number(s.sena) || 0}">
+        </div>
+        <button class="btn danger borrarServicio" type="button">Quitar</button>
+    </div>`;
+}
+
+function activarBorrarServicios() {
+    document.querySelectorAll(".borrarServicio").forEach(b => {
+        b.onclick = () => b.closest(".servicio").remove();
+    });
+}
+
+async function cargarServicios() {
+    categorias = await pedir("/profesional/servicios");
+    dibujarCategorias();
+}
+
+document.getElementById("agregarCategoria").onclick = () => {
+    categorias.push({ categoria:"Nueva categoría", servicios:[] });
+    dibujarCategorias();
+};
+
+document.getElementById("guardarServicios").onclick = async () => {
+    try {
+        const nuevas = [];
+
+        document.querySelectorAll(".categoria").forEach(cat => {
+            const nombre = cat.querySelector(".nombreCategoria").value.trim();
+            const serviciosCat = [];
+
+            cat.querySelectorAll(".servicio").forEach(el => {
+                serviciosCat.push({
+                    nombre: el.querySelector(".sNombre").value.trim(),
+                    duracion: Number(el.querySelector(".sDuracion").value),
+                    precio: Number(el.querySelector(".sPrecio").value),
+                    sena: Number(el.querySelector(".sSena").value),
+                    descripcion: ""
+                });
+            });
+
+            nuevas.push({ categoria:nombre, servicios:serviciosCat });
+        });
+
+        const r = await pedir("/profesional/servicios", {
+            method: "PUT",
+            body: JSON.stringify({ categorias:nuevas })
+        });
+
+        categorias = nuevas;
+        dibujarCategorias();
+        mensaje("msgServicios", r.mensaje);
+    } catch (e) {
+        mensaje("msgServicios", e.message, true);
+    }
+};
+
+(async () => {
+    if (!token) return;
+
+    try {
+        await cargarNegocio();
+        await cargarHorarios();
+        await cargarServicios();
+    } catch (e) {
+        alert("No se pudo cargar la configuración: " + e.message);
+    }
+})();
+</script>
+</body>
+</html>

@@ -3,502 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexiuma</title>
+    <meta name="description" content="Nexiuma: agenda inteligente para profesionales independientes. Organizá tus turnos, clientes y tu tiempo.">
+    <title>Nexiuma | Tu tiempo, mejor organizado</title>
 
     <link rel="stylesheet" href="frontend/assets/css/styles.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-
-
-
 </head>
 
-<body>
-    <header>
+<body id="inicio">
 
+<header>
     <div class="container">
-    
-
-        <div class="logo">
-            <img src="frontend/assets/img/Logo-Nexiuma.png" alt="">
-        </div>
+        <a class="logo" href="#inicio" aria-label="Nexiuma, inicio">
+            <img src="frontend/assets/img/Logo-Nexiuma.png" alt="Nexiuma">
+        </a>
 
         <div class="menu">
-            <nav> 
-                <a href="#">Inicio</a>
+            <nav aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
                 <a href="#que-es">Qué es</a>
-                <a href="#">Para quién es</a>
+                <a href="#para-quien-es">Para quién es</a>
                 <a href="#funciones">Funciones</a>
                 <a href="#planes">Planes</a>
             </nav>
         </div>
 
         <div class="acciones">
-            <a href="#" class="btn-secondary">Iniciar Sesión</a>
-            <a href="#" class="btn-primary">Crear Cuenta</a>
+            <a href="acceso.html?modo=login" class="btn-secondary">Iniciar sesión</a>
+            <a href="acceso.html?modo=registro" class="btn-primary">Crear cuenta</a>
         </div>
-
-     </div> 
-
-    </header>
+    </div>
+</header>
 
 <main>
+    <!-- PORTADA -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-texto">
+                <span class="badge">Agenda inteligente para profesionales independientes</span>
+                <h1>Recuperá el control de tu tiempo</h1>
+                <p>Dejá atrás el caos de los mensajes, los cambios de horarios y los turnos olvidados.</p>
 
-<section class="hero">
-
-  <div class="container">
-
-        <div class="hero-texto">
-        
-
-       <span class="badge"> Agenda inteligente para profesionales independientes
-   </span>       
-  
-
-    <h1>
-        Recuperá el control de tu tiempo
-         <br> 
-
-    </h1>    
-    
-        <p> Dejá atrás el caos de los mensajes, los cambios de horarios y los turnos olvidados.
-        </p>
-        
-    <div class="hero-botones">
-        <a href="#que-es" class="btn-primary">Conocé Nexiuma</a>
-        <a href="#funciones" class="btn-secondary">Ver funciones</a>
-     </div>    
-
-     </div>    
-     
-       
-   <div class="hero-imagen">
-         <img src="frontend/assets/img/hero-img.svg.svg" alt="">
-        </div>   
-
-  </div>
-
-
-
-
-</section>
-
-<section id="que-es">
-
-    <div class="container">
-
-        <div class="que-es-texto">
-
-            <span class="badge-section">Qué es Nexiuma?</span>
-
-            <h2>Una plataforma que <strong>trabaja por vos</strong></h2>
-
-             <div class="linea"></div>
-
-            <p> Nexiuma es una agenda inteligente que te ayuda a organizar tus turnos, gestionar tus clientes y
-                automatizar recordatorios de manera fácil y rápida. 
-             </p>
-
-            <div class="cards">
-
-                <div class="card">
-                    <img src="frontend/assets/img/agenda-card.svg" alt="Agenda">
-                    <h3>Ahorrá tiempo</h3>
-                   
-                    <p>Automatizá tareas y enfocáte en lo que realmente importa.</p>
+                <div class="hero-botones">
+                    <a href="#que-es" class="btn-primary">Conocé Nexiuma</a>
+                    <a href="#funciones" class="btn-secondary">Ver funciones</a>
                 </div>
+            </div>
 
-                <div class="card">
-                    <img src="frontend/assets/img/clientes-card.svg" alt="Clientes">
-                    <h3>Organizá tu agenda</h3>
-
-                    <p>Gestioná tus turnos sin superposiciones ni confusiones.</p>
-                </div>
-
-                <div class="card">
-                    <img src="frontend/assets/img/wpp-card.svg" alt="Recordatorios">
-                    <h3>Mejorá la atención</h3>
-
-                    <p>Recordatorios automáticos y comunicaciones que encantan a tus clientes.</p>
-                </div>
-
-                <div class="card">
-                    <img src="frontend/assets/img/reportes-card.svg" alt="Reportes y Estadisticas">
-                    <h3>Hacé crecer tu negocio</h3>
-
-                    <p>Obtené estadísticas y tomá mejores decisiones cada día.</p>
-                </div>
-
+            <div class="hero-imagen">
+                <img src="frontend/assets/img/hero-img.svg.svg" alt="Agenda digital de Nexiuma">
+            </div>
         </div>
-
-
-       
-
-
-</section>
-
-
-<section id="nosotros">
-
-    <div class="container">
-
-        <div class="nosotros-texto">
-
-            <span class="badge-section">  Nuestra historia</span>
-
-            <h2>La organización no debería ser un problema</h2>
-
-             <div class="linea"></div>
-
-            <p>No importa si sos médico, psicólogo, manicurista, personal trainer o cualquier otro profesional independiente.
-
-               </p> 
-
-             <p>Si alguna vez buscaste una conversación durante minutos, olvidaste agendar un cliente, superpusiste un horario o terminaste el día pensando <strong>"Sé que me estoy olvidando de algo"</strong>, entonces sabes de lo que te hablamos.
-            
-            </p>
-
-             <p class="destacado"><strong>Porque antes de ser una plataforma, fue un problema que también vivimos nosotros.</strong>
-              
-               </p>
-
-                <div class="linea"></div>
-
-             <p>Hoy miles de profesionales siguen viviendo ese problema.
-                <strong>Nosotros decidimos resolverlo.</strong>
-             </p>
-
-
-
-
-        <div class="nosotros-botones">
-        <a href="#planes" class="btn-primary btn-nosotros">Probar gratis 7 días  →</a>
-        <a href="#funciones" class="btn-secondary btn-nosotros">Ver funciones  →</a>
-        
-        </div> 
-
-    </div>
-
     </section>
 
+    <!-- QUÉ ES -->
+    <section id="que-es">
+        <div class="container">
+            <div class="que-es-texto">
+                <span class="badge-section">Qué es Nexiuma?</span>
+                <h2>Una plataforma que <strong>trabaja por vos</strong></h2>
+                <div class="linea"></div>
+                <p>Nexiuma es una agenda inteligente que te ayuda a organizar tus turnos, gestionar tus clientes y automatizar recordatorios de manera fácil y rápida.</p>
 
-
-<section id="para-quien-es">
-
-    <div class="container">
-
-        <div class="para-quien-es-texto">
-
-            <span class="badge-section">Para quién es?</span>
-
-            <h2>Una plataforma para quienes viven de su tiempo</h2>
-
-            <div class="linea"></div>
-
-            <p> No importa si tenés 10 clientas o 100. Lo importante es que tu tiempo vale,
-                y <strong>Nexiuma</strong> está para ayudarte a cuidarlo.
-            </p>
-
-
-
-            <div class="cards-profesionales">
-
-                <div class="card-profesional">
-
-                   <div class="card-header">
-
-                   <img src="frontend/assets/img/Para-quienes/icono-belleza.svg" alt="">
-                   <h3>¿Trabajás en belleza?</h3>
-
-                   </div>
-
-                    <div class="linea-card"></div>
-                    <p>Manicuristas, lashistas, peluquerias, barberías, maquilladora, estetíca, etc.</p>
-                </div>
-
-                <div class="card-profesional">
-
-                     <div class="card-header">
-
-                    <img src="frontend/assets/img/Para-quienes/icono-consultorio.svg" alt="">
-                    <h3>¿Atendés pacientes?</h3>
-                  </div>   
-
-                    <div class="linea-card"></div>
-                    <p>Médicos, podólogos,psicólogos, terapeutas, etc.</p>
-                
-                 </div> 
-
-                <div class="card-profesional">
-
-                  <div class="card-header">   
-
-                    <img src="frontend/assets/img/Para-quienes/icono-entrenamiento.svg" alt="">
-                    <h3>¿Dás clases de entrenamientos?</h3>
-
-                  </div>   
-
-                    <div class="linea-card"></div>
-                    <p>Personal trainers, gimnasios, profesores, etc.</p>
-                
-                </div>
-
-
-                <div class="card-profesional">
-
-                 <div class="card-header">
-
-                    <img src="frontend/assets/img/Para-quienes/icono-capacitaciones.svg" alt="">
-                    <h3>¿Enseñas o capacitás?</h3>
-
-                 </div>    
-
-                    <div class="linea-card"></div>
-                    <p>Academias, cursos, clases particulares y más.</p>
-                
-                </div>
-
-
-                 <div class="card-profesional">
-
-                    <div class="card-header">
-
-                    <img src="frontend/assets/img/Para-quienes/icono-servicios.svg" alt="">
-                    <h3>¿Brindás servicios?</h3>
-
-                    </div> 
-
-                    <div class="linea-card"></div>
-                    <p>Consultores, asesores, freelancers y más.</p>
-                
-                </div>
-
-
-                 <div class="card-profesional">
-
-                    <div class="card-header">
-
-                    <img src="frontend/assets/img/Para-quienes/icono-mas.svg" alt="">
-                    <h3>¿Trabajás con agenda?</h3>
-
+                <div class="cards">
+                    <div class="card">
+                        <img src="frontend/assets/img/agenda-card.svg" alt="Agenda">
+                        <h3>Ahorrá tiempo</h3>
+                        <p>Automatizá tareas y enfocáte en lo que realmente importa.</p>
                     </div>
-                    <div class="linea-card"></div>
-                    <p>Entonces Nexiuma es para vos.</p>
 
-                    <div class="cards-funciones"></div>
-                
-                 </div>
-            </div>
-        </div>    
+                    <div class="card">
+                        <img src="frontend/assets/img/clientes-card.svg" alt="Clientes">
+                        <h3>Organizá tu agenda</h3>
+                        <p>Gestioná tus turnos sin superposiciones ni confusiones.</p>
+                    </div>
 
-    
+                    <div class="card">
+                        <img src="frontend/assets/img/wpp-card.svg" alt="Recordatorios">
+                        <h3>Mejorá la atención</h3>
+                        <p>Recordatorios y comunicaciones para tus clientes.</p>
+                    </div>
 
-</section>
-
-<section id="funciones">
-
-    
-    <div class="container">
-        <div class="funciones-texto">
-
-            <span class="badge-section">Funciones</span>
-
-            <h2>Descubrí todo lo que podes hacer con <strong>Nexiuma</strong></h2>
-
-            <div class="linea"></div>
-
-            <p>Herramientas simples, pensadas para que trabajes mejor, ahorres tiempo y hagas crecer tu negocio</p>
-        </div>
-
-
-
-
-
-        <div class="carrusel">
-
-            <button class="btn-carrusel prev">
-                &#10094;
-            </button>
-
-
-          <div class="carrusel-track">
-
-    <div class="card-funciones left2">
-        <img src="frontend/assets/img/cards-funciones/reserva.svg" alt="">
-    </div>
-
-    <div class="card-funciones left1">
-        <img src="frontend/assets/img/cards-funciones/recordatorios.svg" alt="">
-    </div>
-
-    <div class="card-funciones active">
-        <img src="frontend/assets/img/cards-funciones/agenda.svg" alt="">
-    </div>
-
-    <div class="card-funciones right1">
-        <img src="frontend/assets/img/cards-funciones/clientes.svg" alt="">
-    </div>
-
-    <div class="card-funciones right2">
-        <img src="frontend/assets/img/cards-funciones/estadisticas.svg" alt="">
-    </div>
-
-</div>
-            </div>
-
-
-            <button class="btn-carrusel next">
-                &#10095;
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-</section>
-
-
-<section id="planes">
-
-    <div class="container">
-
-        <div class="que-es-texto">
-
-            <span class="badge-section">Nuestros Planes</span>
-
-            <h2>Tu tiempo vale <strong>Elegí como cuidarlo</strong></h2>
-
-             <div class="linea"></div>
-
-            <p> Empezá gratis y elegí el plan que acompaña el creciemiento de tu negocio. 
-             </p>
-
-            <div class="cards">
-
-                <div class="card">
-                    <img src="frontend/assets/img/agenda-card.svg" alt="Agenda">
-
-
-                    <h3>Básico</h3>
-                    <p>Para profesionales que están comenzando.</p>
-                    <div class="linea"></div>
-
-                    <h2>U$S 10 <small>/ mes</small></h2>
-  
-                  <ul>
-                  <li>1 usuario</li>
-                  <li>Agenda digital</li>
-                  <li>Gestión de clientes</li>
-                  <li>Recordatorios de turnos</li>
-                  <li>7 días de prueba gratis</li>
-                </ul>
-
-                <a href="#registro" class="btn-plan">Elegir este plan</a>
-
+                    <div class="card">
+                        <img src="frontend/assets/img/reportes-card.svg" alt="Reportes y estadísticas">
+                        <h3>Hacé crecer tu negocio</h3>
+                        <p>Obtené estadísticas y tomá mejores decisiones cada día.</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-
-                <div class="card">
-                    <img src="frontend/assets/img/clientes-card.svg" alt="Clientes">
-                   
-                
-                <h3>Pro</h3>
-                <p>Para profesionales que quieren crecer.</p>
+    <!-- NUESTRA HISTORIA -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="nosotros-texto">
+                <span class="badge-section">Nuestra historia</span>
+                <h2>La organización no debería ser un problema</h2>
                 <div class="linea"></div>
 
-                <h2>U$S 18 <small>/ mes</small></h2>
+                <p>No importa si sos médico, psicólogo, manicurista, personal trainer o cualquier otro profesional independiente.</p>
 
-                <ul>
-                  <li>Hasta 2 usuarios</li>
-                  <li>Agenda digital</li>
-                  <li>Gestión de clientes</li>
-                  <li>Recordatorios de turnos</li>
-                  <li>7 días de prueba gratis</li>
-               
-                </ul>
+                <p>Si alguna vez buscaste una conversación durante minutos, olvidaste agendar un cliente, superpusiste un horario o terminaste el día pensando <strong>«Sé que me estoy olvidando de algo»</strong>, entonces sabés de lo que te hablamos.</p>
 
-                <a href="#registro" class="btn-plan">Elegir este plan</a>
-                  
-          
+                <p class="destacado"><strong>Porque antes de ser una plataforma, fue un problema que también vivimos nosotros.</strong></p>
+
+                <div class="linea"></div>
+
+                <p>Hoy miles de profesionales siguen viviendo ese problema. <strong>Nosotros decidimos resolverlo.</strong></p>
+
+                <div class="nosotros-botones">
+                    <a href="acceso.html?modo=registro" class="btn-primary btn-nosotros">Probar gratis 7 días →</a>
+                    <a href="#funciones" class="btn-secondary btn-nosotros">Ver funciones →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARA QUIÉN ES -->
+    <section id="para-quien-es">
+        <div class="container">
+            <div class="para-quien-es-texto">
+                <span class="badge-section">Para quién es?</span>
+                <h2>Una plataforma para quienes viven de su tiempo</h2>
+                <div class="linea"></div>
+                <p>No importa si tenés 10 clientas o 100. Lo importante es que tu tiempo vale, y <strong>Nexiuma</strong> está para ayudarte a cuidarlo.</p>
+
+                <div class="cards-profesionales">
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-belleza.svg" alt="">
+                            <h3>¿Trabajás en belleza?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Manicuristas, lashistas, peluquerías, barberías, maquilladoras y estética.</p>
+                    </div>
+
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-consultorio.svg" alt="">
+                            <h3>¿Atendés pacientes?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Médicos, podólogos, psicólogos y terapeutas.</p>
+                    </div>
+
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-entrenamiento.svg" alt="">
+                            <h3>¿Das clases o entrenamientos?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Personal trainers, gimnasios y profesores.</p>
+                    </div>
+
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-capacitaciones.svg" alt="">
+                            <h3>¿Enseñás o capacitás?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Academias, cursos y clases particulares.</p>
+                    </div>
+
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-servicios.svg" alt="">
+                            <h3>¿Brindás servicios?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Consultores, asesores y freelancers.</p>
+                    </div>
+
+                    <div class="card-profesional">
+                        <div class="card-header">
+                            <img src="frontend/assets/img/Para-quienes/icono-mas.svg" alt="">
+                            <h3>¿Trabajás con agenda?</h3>
+                        </div>
+                        <div class="linea-card"></div>
+                        <p>Entonces Nexiuma es para vos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FUNCIONES -->
+    <section id="funciones">
+        <div class="container">
+            <div class="funciones-texto">
+                <span class="badge-section">Funciones</span>
+                <h2>Descubrí todo lo que podés hacer con <strong>Nexiuma</strong></h2>
+                <div class="linea"></div>
+                <p>Herramientas simples, pensadas para que trabajes mejor, ahorres tiempo y hagas crecer tu negocio.</p>
+            </div>
+
+            <div class="carrusel">
+                <button type="button" class="btn-carrusel prev" aria-label="Función anterior">&#10094;</button>
+
+                <div class="carrusel-track">
+                    <div class="card-funciones left2"><img src="frontend/assets/img/cards-funciones/reserva.svg" alt="Reservas"></div>
+                    <div class="card-funciones left1"><img src="frontend/assets/img/cards-funciones/recordatorios.svg" alt="Recordatorios"></div>
+                    <div class="card-funciones active"><img src="frontend/assets/img/cards-funciones/agenda.svg" alt="Agenda"></div>
+                    <div class="card-funciones right1"><img src="frontend/assets/img/cards-funciones/clientes.svg" alt="Clientes"></div>
+                    <div class="card-funciones right2"><img src="frontend/assets/img/cards-funciones/estadisticas.svg" alt="Estadísticas"></div>
                 </div>
 
+                <button type="button" class="btn-carrusel next" aria-label="Función siguiente">&#10095;</button>
+            </div>
+        </div>
+    </section>
 
-                <div class="card">
-                    <img src="frontend/assets/img/wpp-card.svg" alt="Recordatorios">
-                    
-                    
-                    <h3>Consultorios</h3>
-                    <p>Para consultorios y equipos de profesionales.</p>
-                    <div class="linea"></div>
+    <!-- PLANES -->
+    <section id="planes">
+        <div class="container">
+            <div class="que-es-texto">
+                <span class="badge-section">Nuestros planes</span>
+                <h2>Tu tiempo vale. <strong>Elegí cómo cuidarlo</strong></h2>
+                <div class="linea"></div>
+                <p>Empezá gratis y elegí el plan que acompaña el crecimiento de tu negocio.</p>
 
-                    <h2>U$S 29 <small>/ mes</small></h2>
+                <div class="cards">
+                    <div class="card">
+                        <img src="frontend/assets/img/agenda-card.svg" alt="Plan Básico">
+                        <h3>Básico</h3>
+                        <p>Para profesionales que están comenzando.</p>
+                        <div class="linea"></div>
+                        <h2>U$S 10 <small>/ mes</small></h2>
+                        <ul>
+                            <li>1 usuario</li>
+                            <li>Agenda digital</li>
+                            <li>Gestión de clientes</li>
+                            <li>Recordatorios de turnos</li>
+                            <li>7 días de prueba gratis</li>
+                        </ul>
+                        <a href="acceso.html?modo=registro" class="btn-plan">Elegir este plan</a>
+                    </div>
 
-                <ul>
-                    <li>Hasta 5 usuarios</li>
-                    <li>Agenda para equipos</li>
-                    <li>Gestión de clientes</li>
-                    <li>Recordatorios de turnos</li>
-                    <li>7 días de prueba gratis</li>
-                 </ul>
+                    <div class="card">
+                        <img src="frontend/assets/img/clientes-card.svg" alt="Plan Pro">
+                        <h3>Pro</h3>
+                        <p>Para profesionales que quieren crecer.</p>
+                        <div class="linea"></div>
+                        <h2>U$S 18 <small>/ mes</small></h2>
+                        <ul>
+                            <li>Hasta 2 usuarios</li>
+                            <li>Agenda digital</li>
+                            <li>Gestión de clientes</li>
+                            <li>Recordatorios de turnos</li>
+                            <li>7 días de prueba gratis</li>
+                        </ul>
+                        <a href="acceso.html?modo=registro" class="btn-plan">Elegir este plan</a>
+                    </div>
 
-                 <a href="#registro" class="btn-plan">Elegir este plan</a>
+                    <div class="card">
+                        <img src="frontend/assets/img/wpp-card.svg" alt="Plan Consultorios">
+                        <h3>Consultorios</h3>
+                        <p>Para consultorios y equipos de profesionales.</p>
+                        <div class="linea"></div>
+                        <h2>U$S 29 <small>/ mes</small></h2>
+                        <ul>
+                            <li>Hasta 5 usuarios</li>
+                            <li>Agenda para equipos</li>
+                            <li>Gestión de clientes</li>
+                            <li>Recordatorios de turnos</li>
+                            <li>7 días de prueba gratis</li>
+                        </ul>
+                        <a href="acceso.html?modo=registro" class="btn-plan">Elegir este plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- CONTACTO -->
+    <section id="contacto" class="pagina-contacto">
+        <div class="contacto-intro">
+            <span>¿TENÉS ALGUNA CONSULTA?</span>
+            <h1>Estamos para ayudarte.</h1>
+            <p>Si querés conocer más sobre Nexiuma o necesitás ayuda para elegir tu plan, escribinos.</p>
+        </div>
 
-                 </div>
+        <div class="contacto-contenido">
+            <form id="formContacto">
+                <div class="campo">
+                    <label for="nombre">Nombre *</label>
+                    <input type="text" id="nombre" name="nombre" required maxlength="100" autocomplete="name">
+                </div>
 
+                <div class="campo">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required maxlength="150" autocomplete="email">
+                </div>
 
-       
+                <div class="campo">
+                    <label for="whatsapp">WhatsApp *</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required maxlength="30" autocomplete="tel">
+                </div>
 
+                <div class="campo">
+                    <label for="profesion">Profesión o actividad</label>
+                    <input type="text" id="profesion" name="profesion" maxlength="100">
+                </div>
 
-</section>
+                <div class="campo">
+                    <label for="mensaje">¿En qué podemos ayudarte? *</label>
+                    <textarea id="mensaje" name="mensaje" required maxlength="1500"></textarea>
+                </div>
 
-
-
-
-<section class="contacto-cta">
-
-    <span>¿TENÉS ALGUNA CONSULTA?</span>
-
-    <h2>Estamos para ayudarte.</h2>
-
-    <p>
-        Si querés conocer más sobre Nexiuma o necesitás
-        ayuda para elegir tu plan, escribinos.
-    </p>
-
-    <a href="#contacto" class="btn-primary">
-        Enviar mi consulta
-    </a>
-
-</section>
-
-
-
-
+                <button type="submit">Enviar consulta</button>
+                <p id="estadoContacto" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </section>
 </main>
 
-
-
 <footer class="footer">
-
     <div class="footer-container">
-
-      
         <div class="footer-marca">
             <h2>Nexiuma.</h2>
             <p>Tu tiempo, mejor organizado.</p>
             <span>Organizá tu negocio. Disfrutá tu tiempo.</span>
         </div>
 
-        
         <div class="footer-columna">
             <h3>Explorá</h3>
             <a href="#inicio">Inicio</a>
@@ -508,34 +338,251 @@
             <a href="#planes">Planes</a>
         </div>
 
-        
         <div class="footer-columna">
             <h3>Contacto</h3>
-            <a href="#">Correo electrónico</a>
-            <a href="#">Instagram</a>
-            <a href="#">WhatsApp</a>
+            <a href="#contacto">Enviar una consulta</a>
+            <a href="acceso.html?modo=registro">Crear una cuenta</a>
+            <a href="acceso.html?modo=login">Iniciar sesión</a>
         </div>
-
-   
-
     </div>
 
-    
     <div class="footer-bottom">
-        <p>© 2026 Nexiuma by Geraldine Torres. Todos los derechos reservados.</p>
+        <p>© 2026 Nexiuma. Todos los derechos reservados.</p>
         <p>La organización de tu tiempo empieza acá.</p>
     </div>
-
 </footer>
-
-   
-
-
-
 
 <script src="frontend/assets/js/script.js"></script>
 
 
+<!-- ASISTENTE NEXI -->
+<style>
+    #nexi-boton {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        z-index: 9999;
+        background: #d6c4b0;
+        color: #303030;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 22px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 18px #0002;
+    }
+
+    #nexi-ventana {
+        display: none;
+        position: fixed;
+        right: 25px;
+        bottom: 90px;
+        width: 340px;
+        max-width: calc(100vw - 30px);
+        height: 450px;
+        max-height: calc(100vh - 120px);
+        z-index: 9999;
+        background: #f7f4f1;
+        border: 1px solid #d6c4b0;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px #0002;
+        overflow: hidden;
+        flex-direction: column;
+        font-family: Manrope, sans-serif;
+    }
+
+    #nexi-encabezado {
+        background: #d6c4b0;
+        padding: 17px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #303030;
+        font-weight: 700;
+    }
+
+    #nexi-cerrar {
+        border: none;
+        background: transparent;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    #nexi-mensajes {
+        flex: 1;
+        padding: 15px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nexi-mensaje {
+        padding: 11px 14px;
+        border-radius: 13px;
+        max-width: 85%;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .nexi-bot {
+        background: white;
+        align-self: flex-start;
+        color: #303030;
+    }
+
+    .nexi-usuario {
+        background: #e6d7c8;
+        align-self: flex-end;
+        color: #303030;
+    }
+
+    #nexi-formulario {
+        display: flex;
+        padding: 12px;
+        gap: 8px;
+        border-top: 1px solid #ddd;
+    }
+
+    #nexi-entrada {
+        flex: 1;
+        min-width: 0;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        outline: none;
+    }
+
+    #nexi-enviar {
+        border: none;
+        background: #d6c4b0;
+        border-radius: 50%;
+        width: 42px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+</style>
+
+<button id="nexi-boton">✦ Hablá con Nexi</button>
+
+<div id="nexi-ventana">
+    <div id="nexi-encabezado">
+        <span>✦ Nexi | Asistente virtual</span>
+        <button id="nexi-cerrar">×</button>
+    </div>
+
+    <div id="nexi-mensajes">
+        <div class="nexi-mensaje nexi-bot">
+            ¡Hola! Soy Nexi, tu asistente de Nexiuma.
+            ¿En qué puedo ayudarte?
+        </div>
+    </div>
+
+    <form id="nexi-formulario">
+        <input
+            id="nexi-entrada"
+            type="text"
+            placeholder="Escribí tu consulta..."
+            autocomplete="off"
+            required
+        >
+        <button id="nexi-enviar" type="submit">➤</button>
+    </form>
+</div>
+
+<script>
+    const nexiBoton = document.getElementById("nexi-boton");
+    const nexiVentana = document.getElementById("nexi-ventana");
+    const nexiCerrar = document.getElementById("nexi-cerrar");
+    const nexiFormulario = document.getElementById("nexi-formulario");
+    const nexiEntrada = document.getElementById("nexi-entrada");
+    const nexiMensajes = document.getElementById("nexi-mensajes");
+
+    nexiBoton.addEventListener("click", () => {
+        nexiVentana.style.display = "flex";
+        nexiBoton.style.display = "none";
+    });
+
+    nexiCerrar.addEventListener("click", () => {
+        nexiVentana.style.display = "none";
+        nexiBoton.style.display = "block";
+    });
+
+    function agregarMensaje(texto, tipo) {
+        const mensaje = document.createElement("div");
+        mensaje.className = "nexi-mensaje " + tipo;
+        mensaje.textContent = texto;
+        nexiMensajes.appendChild(mensaje);
+        nexiMensajes.scrollTop = nexiMensajes.scrollHeight;
+        return mensaje;
+    }
+
+    nexiFormulario.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const mensaje = nexiEntrada.value.trim();
+        if (!mensaje) return;
+
+        agregarMensaje(mensaje, "nexi-usuario");
+        nexiEntrada.value = "";
+
+        const cargando = agregarMensaje("Nexi está pensando...", "nexi-bot");
+
+        nexiFormulario.querySelector("button").disabled = true;
+
+      
+try {
+    // Recuperar el historial de la conversación
+    let historial = JSON.parse(
+        sessionStorage.getItem("nexiHistorial") || "[]"
+    );
+
+    const respuesta = await fetch("http://localhost:3001/api/ia/chat", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            mensaje,
+            historial
+        })
+    });
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(datos.mensaje || "No se pudo responder.");
+    }
+
+    // Guardar la consulta y la respuesta
+    historial.push(
+        { role: "user", content: mensaje },
+        { role: "assistant", content: datos.respuesta }
+    );
+
+    // Conservar solamente los últimos 12 mensajes
+    historial = historial.slice(-12);
+
+    sessionStorage.setItem(
+        "nexiHistorial",
+        JSON.stringify(historial)
+    );
+
+    cargando.textContent = datos.respuesta;
+
+} catch (error) {
+    cargando.textContent =
+        error.message || "No pude conectarme. Intentá nuevamente.";
+}
+
+nexiFormulario.querySelector("button").disabled = false;
+nexiEntrada.focus();
+
+    });
+
+
+</script>
 
 </body>
 </html>

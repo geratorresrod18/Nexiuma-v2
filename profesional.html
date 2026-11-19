@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi agenda | Nexiuma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --fondo:#f5f3ee;--blanco:#fff;--texto:#303030;--gris:#77736d;
+    --beige:#d6c4b0;--beige-claro:#eee7de;--borde:#e9e5df;
+    --verde:#47775b;--rojo:#b85c55;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Manrope",sans-serif;background:var(--fondo);color:var(--texto)}
+button,input,select{font:inherit}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:245px;background:white;border-right:1px solid var(--borde);padding:30px 20px;display:flex;flex-direction:column;flex-shrink:0}
+.logo{font-size:25px;font-weight:800;letter-spacing:-1px;margin:0 0 45px 10px}
+.logo span{color:#b59d82}
+.menu-label{color:#aaa39a;font-size:11px;font-weight:800;letter-spacing:1.5px;margin:0 0 13px 12px;text-transform:uppercase}
+.nav-button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:var(--gris);padding:13px 14px;border-radius:10px;cursor:pointer;text-align:left;margin-bottom:5px;font-size:14px;font-weight:600}
+.nav-button:hover,.nav-button.active{background:var(--beige-claro);color:var(--texto)}
+.sidebar-bottom{margin-top:auto;border-top:1px solid var(--borde);padding-top:20px}
+.main{flex:1;min-width:0;padding:35px 42px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:32px}
+.topbar h1{font-size:27px;letter-spacing:-1px}
+.topbar p{color:var(--gris);font-size:13px;margin-top:5px}
+.professional{display:flex;align-items:center;gap:11px;background:white;padding:9px 15px;border:1px solid var(--borde);border-radius:13px}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--beige-claro);display:grid;place-items:center;font-weight:800}
+.professional strong{display:block;font-size:12px}
+.professional small{color:var(--gris);font-size:11px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px}
+.stat-card{background:white;border:1px solid var(--borde);border-radius:15px;padding:23px}
+.stat-card p{color:var(--gris);font-size:13px;font-weight:600}
+.stat-card h2{font-size:31px;margin-top:10px;letter-spacing:-1px}
+.section{display:none}.section.active{display:block}
+.panel{background:white;border:1px solid var(--borde);border-radius:16px;padding:25px;margin-bottom:22px}
+.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}
+.panel-heading h2{font-size:17px}
+.panel-heading p{font-size:12px;color:var(--gris);margin-top:4px}
+.btn{border:0;border-radius:9px;padding:11px 17px;cursor:pointer;font-weight:700;font-size:12px;transition:.2s}
+.btn-primary{background:var(--texto);color:white}
+.btn-primary:hover{background:#555}
+.btn-light{background:var(--beige-claro);color:var(--texto)}
+.btn-danger{background:#f8e9e7;color:var(--rojo)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:600px}
+th{text-align:left;color:#999188;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;padding:12px;border-bottom:1px solid var(--borde)}
+td{padding:16px 12px;font-size:12px;border-bottom:1px solid #f0ede8}
+tr:last-child td{border-bottom:0}
+.cliente-nombre{font-weight:800}
+.estado{display:inline-block;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;background:#e7f1e9;color:var(--verde)}
+.estado.cancelada{background:#f8e9e7;color:var(--rojo)}
+.estado.pasada{background:#eeeae5;color:#77736d}
+.acciones-turno{white-space:nowrap}
+.empty{text-align:center;color:var(--gris);padding:35px 10px;font-size:13px}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:17px}
+.campo{display:flex;flex-direction:column;gap:7px}
+.campo.full{grid-column:1/-1}
+.campo label{font-size:12px;font-weight:800}
+.campo input,.campo select{width:100%;padding:13px;border:1px solid var(--borde);border-radius:9px;outline:none;background:white;color:var(--texto);font-size:13px}
+.campo input:focus,.campo select:focus{border-color:#bda88f}
+.form-actions{display:flex;align-items:center;gap:12px;margin-top:22px}
+.mensaje{font-size:12px;margin-top:14px;min-height:18px}
+.mensaje.error{color:var(--rojo)}.mensaje.ok{color:var(--verde)}
+.filtros{display:flex;gap:10px;flex-wrap:wrap}
+.filtros input,.filtros select,#buscarCliente{border:1px solid var(--borde);border-radius:9px;padding:10px 12px;background:white;font-size:12px;color:var(--texto)}
+.link-wpp{color:var(--verde);text-decoration:none;font-weight:700}
+.loading{color:var(--gris);font-size:13px;padding:20px 0}
+@media(max-width:900px){.sidebar{width:205px}.main{padding:25px}}
+@media(max-width:650px){
+.layout{display:block}
+.sidebar{width:100%;padding:15px;border-right:0;border-bottom:1px solid var(--borde)}
+.logo{margin:0 0 15px 5px}
+.menu-label,.sidebar-bottom{display:none}
+.nav{display:flex;gap:5px;overflow-x:auto}
+.nav-button{white-space:nowrap;width:auto;margin:0;padding:10px;font-size:12px}
+.main{padding:22px 15px}
+.topbar{align-items:flex-start;flex-direction:column}
+.stats{grid-template-columns:1fr;gap:10px}
+.stat-card{padding:17px}.stat-card h2{font-size:25px}
+.form-grid{grid-template-columns:1fr}
+.campo.full{grid-column:auto}
+.panel{padding:17px}
+.panel-heading{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+    <div class="logo">nexiuma<span>.</span></div>
+    <p class="menu-label">Menú principal</p>
+    <nav class="nav">
+        <button class="nav-button active" data-section="inicio">▦ Inicio</button>
+        <button class="nav-button" data-section="agenda">▤ Mi agenda</button>
+        <button class="nav-button" data-section="nuevo">＋ Nuevo turno</button>
+        <button class="nav-button" data-section="clientes">♙ Clientes</button>
+    </nav>
+    <div class="sidebar-bottom">
+        <button class="nav-button" onclick="location.href='configuracion.html'">⚙ Configuración</button>
+        <button class="nav-button" onclick="location.href='index.html'">↗ Ver sitio web</button>
+        <button class="nav-button" id="cerrarSesion">⇥ Cerrar sesión</button>
+    </div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+    <div>
+        <h1 id="tituloPagina">¡Hola! Bienvenida 👋</h1>
+        <p>Este es el resumen de tu actividad.</p>
+    </div>
+    <div class="professional">
+        <div class="avatar" id="avatar">N</div>
+        <div>
+            <strong id="nombreNegocio">Mi negocio</strong>
+            <small>Mi espacio profesional</small>
+        </div>
+    </div>
+</header>
+
+<div class="stats">
+    <div class="stat-card"><p>Turnos de hoy</p><h2 id="totalHoy">—</h2></div>
+    <div class="stat-card"><p>Próximos turnos</p><h2 id="totalProximos">—</h2></div>
+    <div class="stat-card"><p>Clientes registrados</p><h2 id="totalClientes">—</h2></div>
+</div>
+
+<section class="section active" id="inicio">
+    <div class="panel">
+        <div class="panel-heading">
+            <div><h2>Próximos turnos</h2><p>Los siguientes turnos de tu agenda.</p></div>
+            <button class="btn btn-light" onclick="cambiarSeccion('agenda')">Ver agenda completa</button>
+        </div>
+        <div id="resumenTurnos" class="loading">Cargando turnos...</div>
+    </div>
+</section>
+
+<section class="section" id="agenda">
+    <div class="panel">
+        <div class="panel-heading">
+            <div><h2>Mi agenda</h2><p>Todos tus turnos registrados.</p></div>
+            <div class="filtros">
+                <input type="date" id="filtroFecha">
+                <select id="filtroEstado">
+                    <option value="todos">Todos los estados</option>
+                    <option value="confirmada">Confirmados</option>
+                    <option value="cancelada">Cancelados</option>
+                </select>
+            </div>
+        </div>
+        <div id="tablaAgenda" class="loading">Cargando agenda...</div>
+    </div>
+</section>
+
+<section class="section" id="nuevo">
+    <div class="panel">
+        <div class="panel-heading">
+            <div><h2>Agregar un turno</h2><p>Agendá manualmente a una clienta.</p></div>
+        </div>
+        <form id="formNuevoTurno">
+            <div class="form-grid">
+                <div class="campo">
+                    <label for="nombre">Nombre de la clienta</label>
+                    <input type="text" id="nombre" required placeholder="Ej. María Pérez">
+                </div>
+                <div class="campo">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="whatsapp" placeholder="Ej. 099123456">
+                </div>
+                <div class="campo">
+                    <label for="servicio">Servicio</label>
+                    <input type="text" id="servicio" required list="listaServicios" placeholder="Ej. Kapping">
+                    <datalist id="listaServicios"></datalist>
+                </div>
+                <div class="campo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha" required>
+                </div>
+                <div class="campo">
+                    <label for="hora">Hora</label>
+                    <input type="time" id="hora" required>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="btnGuardar">Guardar turno</button>
+                <button type="reset" class="btn btn-light">Limpiar</button>
+            </div>
+            <p id="mensajeFormulario" class="mensaje"></p>
+        </form>
+    </div>
+</section>
+
+<section class="section" id="clientes">
+    <div class="panel">
+        <div class="panel-heading">
+            <div><h2>Mis clientes</h2><p>Clientes que reservaron o tienen turnos registrados.</p></div>
+            <input type="search" id="buscarCliente" placeholder="Buscar cliente...">
+        </div>
+        <div id="tablaClientes" class="loading">Cargando clientes...</div>
+    </div>
+</section>
+</main>
+</div>
+
+<script>
+const API = "http://localhost:3001/api";
+const token = localStorage.getItem("nexiuma_token");
+
+let reservas = [];
+let catalogo = [];
+
+if (!token) {
+    location.replace("acceso.html?modo=login");
+}
+
+function cerrarSesion() {
+    localStorage.removeItem("nexiuma_token");
+    localStorage.removeItem("nexiuma_profesional");
+    location.replace("acceso.html?modo=login");
+}
+
+document.getElementById("cerrarSesion").addEventListener("click", cerrarSesion);
+
+async function pedir(url, opciones = {}) {
+    const respuesta = await fetch(API + url, {
+        ...opciones,
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+            ...(opciones.headers || {})
+        }
+    });
+
+    const contenido = await respuesta.text();
+    let datos;
+
+    try {
+        datos = contenido ? JSON.parse(contenido) : {};
+    } catch {
+        throw new Error("El servidor devolvió una respuesta inesperada.");
+    }
+
+    if (respuesta.status === 401) {
+        cerrarSesion();
+        throw new Error("Tu sesión venció. Iniciá sesión nuevamente.");
+    }
+
+    if (!respuesta.ok) {
+        throw new Error(datos.mensaje || "No se pudo completar la operación.");
+    }
+
+    return datos;
+}
+
+function fechaLocal() {
+    const ahora = new Date();
+    const anio = ahora.getFullYear();
+    const mes = String(ahora.getMonth()+1).padStart(2,"0");
+    const dia = String(ahora.getDate()).padStart(2,"0");
+    return `${anio}-${mes}-${dia}`;
+}
+
+function escapar(valor) {
+    return String(valor ?? "").replace(/[&<>"']/g, caracter => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+    })[caracter]);
+}
+
+function mostrarFecha(fecha) {
+    if (!fecha) return "—";
+    const partes = fecha.split("-");
+    if (partes.length !== 3) return fecha;
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function cambiarSeccion(nombre) {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".nav-button[data-section]").forEach(b => b.classList.remove("active"));
+
+    document.getElementById(nombre).classList.add("active");
+
+    const boton = document.querySelector(`.nav-button[data-section="${nombre}"]`);
+    if (boton) boton.classList.add("active");
+
+    const titulos = {
+        inicio:"¡Hola! Bienvenida 👋",
+        agenda:"Mi agenda",
+        nuevo:"Agregar un turno",
+        clientes:"Mis clientes"
+    };
+
+    document.getElementById("tituloPagina").textContent = titulos[nombre];
+}
+
+document.querySelectorAll(".nav-button[data-section]").forEach(boton => {
+    boton.addEventListener("click", () => cambiarSeccion(boton.dataset.section));
+});
+
+async function cargarPerfil() {
+    const usuario = await pedir("/auth/me");
+    const negocio = await pedir("/profesional/configuracion");
+
+    const nombre = negocio.nombre || usuario.nombre || "Mi negocio";
+
+    document.getElementById("nombreNegocio").textContent = nombre;
+    document.getElementById("avatar").textContent = nombre.charAt(0).toUpperCase();
+}
+
+async function cargarCatalogo() {
+    catalogo = await pedir("/profesional/servicios");
+
+    const nombres = [];
+    catalogo.forEach(cat => {
+        (cat.servicios || []).forEach(s => nombres.push(s.nombre));
+    });
+
+    document.getElementById("listaServicios").innerHTML = nombres
+        .map(n => `<option value="${escapar(n)}">`)
+        .join("");
+}
+
+async function cargarReservas() {
+    const resumen = document.getElementById("resumenTurnos");
+    const tabla = document.getElementById("tablaAgenda");
+    const clientes = document.getElementById("tablaClientes");
+
+    resumen.textContent = "Conectando con tu agenda...";
+    tabla.textContent = "Cargando agenda...";
+    clientes.textContent = "Cargando clientes...";
+
+    try {
+        const datos = await pedir("/profesional/reservas", {
+            method:"GET",
+            cache:"no-store",
+            headers:{"Accept":"application/json"}
+        });
+
+        if (!Array.isArray(datos)) {
+            throw new Error("La respuesta no contiene una lista de turnos.");
+        }
+
+        reservas = datos;
+        actualizarResumen();
+        mostrarResumenTurnos();
+        mostrarAgenda();
+        mostrarClientes();
+
+    } catch (error) {
+        console.error("ERROR AL CARGAR LA AGENDA:", error);
+        const mensaje = `No se pudo cargar la agenda: ${error.message}`;
+        resumen.textContent = mensaje;
+        tabla.textContent = mensaje;
+        clientes.textContent = mensaje;
+    }
+}
+
+function actualizarResumen() {
+    const hoy = fechaLocal();
+    const activos = reservas.filter(r => r.estado !== "cancelada");
+    const turnosHoy = activos.filter(r => r.fecha === hoy);
+    const proximos = activos.filter(r => r.fecha >= hoy);
+    const clientes = obtenerClientes();
+
+    document.getElementById("totalHoy").textContent = turnosHoy.length;
+    document.getElementById("totalProximos").textContent = proximos.length;
+    document.getElementById("totalClientes").textContent = clientes.length;
+}
+
+function obtenerClientes() {
+    const mapa = new Map();
+
+    reservas.forEach(reserva => {
+        const nombre = String(reserva.nombre || "").trim();
+        const whatsapp = String(reserva.whatsapp || "").trim();
+
+        if (!nombre) return;
+
+        const clave = whatsapp || nombre.toLowerCase();
+
+        if (!mapa.has(clave)) {
+            mapa.set(clave,{
+                nombre,whatsapp,turnos:0,ultimaFecha:reserva.fecha || ""
+            });
+        }
+
+        const cliente = mapa.get(clave);
+        cliente.turnos++;
+
+        if (reserva.fecha > cliente.ultimaFecha) {
+            cliente.ultimaFecha = reserva.fecha;
+        }
+    });
+
+    return Array.from(mapa.values()).sort((a,b) => a.nombre.localeCompare(b.nombre));
+}
+
+function mostrarResumenTurnos() {
+    const contenedor = document.getElementById("resumenTurnos");
+    const hoy = fechaLocal();
+
+    const proximos = reservas
+        .filter(r => r.estado !== "cancelada" && r.fecha >= hoy)
+        .sort((a,b) => `${a.fecha} ${a.hora}`.localeCompare(`${b.fecha} ${b.hora}`))
+        .slice(0,5);
+
+    if (!proximos.length) {
+        contenedor.innerHTML = '<div class="empty">Todavía no tenés próximos turnos.</div>';
+        return;
+    }
+
+    contenedor.innerHTML = `
+        <div class="table-wrap">
+        <table>
+            <thead><tr>
+                <th>Fecha</th><th>Hora</th><th>Cliente</th><th>Servicio</th><th>Estado</th>
+            </tr></thead>
+            <tbody>
+            ${proximos.map(r => `
+                <tr>
+                    <td>${mostrarFecha(r.fecha)}</td>
+                    <td><strong>${escapar(r.hora)}</strong></td>
+                    <td class="cliente-nombre">${escapar(r.nombre)}</td>
+                    <td>${escapar(r.servicio)}</td>
+                    <td><span class="estado">Confirmado</span></td>
+                </tr>
+            `).join("")}
+            </tbody>
+        </table>
+        </div>`;
+}
+
+function mostrarAgenda() {
+    const contenedor = document.getElementById("tablaAgenda");
+    const filtroFecha = document.getElementById("filtroFecha").value;
+    const filtroEstado = document.getElementById("filtroEstado").value;
+
+    let lista = [...reservas];
+
+    if (filtroFecha) lista = lista.filter(r => r.fecha === filtroFecha);
+    if (filtroEstado !== "todos") lista = lista.filter(r => r.estado === filtroEstado);
+
+    lista.sort((a,b) => `${a.fecha} ${a.hora}`.localeCompare(`${b.fecha} ${b.hora}`));
+
+    if (!lista.length) {
+        contenedor.innerHTML = '<div class="empty">No hay turnos para mostrar.</div>';
+        return;
+    }
+
+    contenedor.innerHTML = `
+    <div class="table-wrap">
+    <table>
+        <thead><tr>
+            <th>Fecha</th><th>Hora</th><th>Cliente</th><th>Servicio</th><th>Estado</th><th>Acciones</th>
+        </tr></thead>
+        <tbody>
+        ${lista.map(r => {
+            const cancelada = r.estado === "cancelada";
+            const pasada = r.fecha < fechaLocal() ||
+                (r.fecha === fechaLocal() && r.hora < new Date().toTimeString().slice(0,5));
+            const estadoTexto = cancelada ? "Cancelado" : pasada ? "Finalizado" : "Confirmado";
+            const claseEstado = cancelada ? "cancelada" : pasada ? "pasada" : "";
+
+            return `<tr>
+                <td>${mostrarFecha(r.fecha)}</td>
+                <td><strong>${escapar(r.hora)}</strong></td>
+                <td class="cliente-nombre">${escapar(r.nombre)}</td>
+                <td>${escapar(r.servicio)}</td>
+                <td><span class="estado ${claseEstado}">${estadoTexto}</span></td>
+                <td class="acciones-turno">
+                    ${!cancelada ? `<button class="btn btn-danger" onclick="cancelarTurno('${escapar(r._id)}')">Cancelar</button>` : "—"}
+                </td>
+            </tr>`;
+        }).join("")}
+        </tbody>
+    </table>
+    </div>`;
+}
+
+function mostrarClientes() {
+    const contenedor = document.getElementById("tablaClientes");
+    const busqueda = document.getElementById("buscarCliente").value.trim().toLowerCase();
+
+    const clientes = obtenerClientes().filter(cliente =>
+        cliente.nombre.toLowerCase().includes(busqueda) ||
+        cliente.whatsapp.toLowerCase().includes(busqueda)
+    );
+
+    if (!clientes.length) {
+        contenedor.innerHTML = '<div class="empty">Todavía no hay clientes registrados.</div>';
+        return;
+    }
+
+    contenedor.innerHTML = `
+    <div class="table-wrap">
+    <table>
+        <thead><tr>
+            <th>Nombre</th><th>WhatsApp</th><th>Turnos registrados</th><th>Último turno</th>
+        </tr></thead>
+        <tbody>
+        ${clientes.map(cliente => {
+            const telefono = cliente.whatsapp.replace(/\D/g,"");
+            return `<tr>
+                <td class="cliente-nombre">${escapar(cliente.nombre)}</td>
+                <td>${telefono
+                    ? `<a class="link-wpp" href="https://wa.me/${telefono}" target="_blank" rel="noopener">${escapar(cliente.whatsapp)}</a>`
+                    : "—"}</td>
+                <td>${cliente.turnos}</td>
+                <td>${mostrarFecha(cliente.ultimaFecha)}</td>
+            </tr>`;
+        }).join("")}
+        </tbody>
+    </table>
+    </div>`;
+}
+
+document.getElementById("formNuevoTurno").addEventListener("submit", async evento => {
+    evento.preventDefault();
+
+    const boton = document.getElementById("btnGuardar");
+    const mensaje = document.getElementById("mensajeFormulario");
+
+    const datos = {
+        nombre:document.getElementById("nombre").value.trim(),
+        whatsapp:document.getElementById("whatsapp").value.trim(),
+        servicio:document.getElementById("servicio").value.trim(),
+        fecha:document.getElementById("fecha").value,
+        hora:document.getElementById("hora").value
+    };
+
+    boton.disabled = true;
+    boton.textContent = "Guardando...";
+    mensaje.textContent = "";
+    mensaje.className = "mensaje";
+
+    try {
+        const resultado = await pedir("/profesional/reservas", {
+            method:"POST",
+            body:JSON.stringify(datos)
+        });
+
+        mensaje.textContent = resultado.mensaje;
+        mensaje.className = "mensaje ok";
+
+        document.getElementById("formNuevoTurno").reset();
+        await cargarReservas();
+
+    } catch (error) {
+        mensaje.textContent = error.message;
+        mensaje.className = "mensaje error";
+    } finally {
+        boton.disabled = false;
+        boton.textContent = "Guardar turno";
+    }
+});
+
+async function cancelarTurno(id) {
+    const confirmar = confirm("¿Querés cancelar este turno? El horario volverá a quedar disponible.");
+    if (!confirmar) return;
+
+    try {
+        const resultado = await pedir(
+            `/profesional/reservas/${encodeURIComponent(id)}/cancelar`,
+            {method:"PATCH"}
+        );
+
+        alert(resultado.mensaje);
+        await cargarReservas();
+
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
+document.getElementById("filtroFecha").addEventListener("change",mostrarAgenda);
+document.getElementById("filtroEstado").addEventListener("change",mostrarAgenda);
+document.getElementById("buscarCliente").addEventListener("input",mostrarClientes);
+
+document.getElementById("fecha").min = fechaLocal();
+
+(async () => {
+    if (!token) return;
+
+    try {
+        await cargarPerfil();
+        await cargarCatalogo();
+        await cargarReservas();
+    } catch (error) {
+        console.error(error);
+        alert("No se pudo cargar tu panel: " + error.message);
+    }
+})();
+</script>
+</body>
+</html>
